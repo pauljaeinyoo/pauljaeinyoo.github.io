@@ -25,6 +25,8 @@
     </textarea> 
     <br><br> 
     Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br>
+    UserID: <input name="userid" required="" size="75" type="text"/> 
     <br><br> 
     Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
@@ -39,15 +41,18 @@
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
+        var userid = form["userid"].value;
         var user = {
             email: email, 
             name: fullname, 
             destination: destination, 
-            details: details
+            details: details,
+            userid: userid
         };
         analytics.identify('1234', {
             email: email, 
-            name: fullname
+            name: fullname,
+            userid: userid
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
