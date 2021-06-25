@@ -24,7 +24,7 @@
     <textarea cols="81" name="details" required="" rows="3">
     </textarea> 
     <br><br> 
-    Name: <input name="name" required="" size="75" type="text"/> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
     <br><br>
     Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
@@ -44,19 +44,19 @@
         var details = form["details"].value;
         var user = {
             email: email, 
-            name: name, 
+            fullname: fullname, 
             destination: destination, 
             details: details,
             number: number
         };
         var contactInfo = {
             email: email,
-            name: name,
+            fullname: fullname,
             number: number
         };
         analytics.identify('9177977573', {
             email: email, 
-            name: name,
+            fullname: fullname,
         });
       analytics.track('destination submitted', user, function() {
             window.location.href = "";
