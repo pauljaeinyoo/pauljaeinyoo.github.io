@@ -61,10 +61,10 @@
             fullname: fullname,
         });
 
-        var smw1 = function({payload, next, integrations}) {
+        /*var smw1 = function({payload, next}) {
           payload.obj.context.middleware_field = "middleware!";
           next(payload);
-        };
+        };*/
       analytics.track('Form Submitted', user);
       analytics.track('Number Submitted', contactInfo);
       }
