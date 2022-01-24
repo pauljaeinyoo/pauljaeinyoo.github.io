@@ -60,6 +60,11 @@
             email: email,
             fullname: fullname,
         });
+
+        var smw1 = function({payload, next, integrations}) {
+          payload.obj.context.middleware_field = "middleware!";
+          next(payload);
+        };
       analytics.track('Form Submitted', user);
       analytics.track('Number Submitted', contactInfo);
       }
