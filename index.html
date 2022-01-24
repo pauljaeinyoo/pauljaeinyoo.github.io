@@ -58,12 +58,8 @@
             email: email,
             fullname: fullname,
         });
-      analytics.track('Form Submitted', {
-        user
-        });
-      analytics.track('Number Submitted', contactInfo, function() {
-            window.location.href = "";
-        })
+      analytics.track('Form Submitted', user);
+      analytics.track('Number Submitted', contactInfo)
       }
     </script>
 </body>
