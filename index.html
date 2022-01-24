@@ -1,9 +1,9 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title>
 
-    <!--Placeholder for Segment Snippet --> 
+    <!--Placeholder for Segment Snippet -->
     <script>
     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
     analytics.load("bQqLkTIOYk1ufjha3Py2O12lbshZo1zc");
@@ -11,27 +11,27 @@
     }}();
     </script>
 
-</head> 
-<body> 
-<h1>What is your favorite place to travel?!</h1> 
-<p>I am building a directory of the sweetest travel destinations.</p>  
+</head>
+<body>
+<h1>What is your favorite place to travel?!</h1>
+<p>I am building a directory of the sweetest travel destinations.</p>
 <form name="travel" onsubmit="identify(event)">
      What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text"/> 
-    <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-    <br><br> 
+    <input name="destination" required="" size="81" type="text"/>
+    <br><br><br>
+    Any recommendations (cool things to do, places to visit or restaurants to eat)?
+    <br><br>
     <textarea cols="81" name="details" required="" rows="3">
-    </textarea> 
-    <br><br> 
-    Name: <input name="fullname" required="" size="75" type="text"/> 
+    </textarea>
     <br><br>
-    Email: <input name="email" required="" size="75" type="email"/> 
+    Name: <input name="fullname" required="" size="75" type="text"/>
     <br><br>
-    Number: <input name="number" required="" size="75" type="number"/> 
+    Email: <input name="email" required="" size="75" type="email"/>
+    <br><br>
+    Number: <input name="number" required="" size="75" type="number"/>
     <br><br>
     <input name="submit" type="submit" value="submit"/>
-</form> 
+</form>
     <!--Placeholder for identify and track script -->
     <script type="text/javascript">
       function identify(e){
@@ -43,9 +43,9 @@
         var number = form["number"].value;
         var details = form["details"].value;
         var user = {
-            email: email, 
-            fullname: fullname, 
-            destination: destination, 
+            email: email,
+            fullname: fullname,
+            destination: destination,
             details: details,
             number: number
         };
@@ -54,8 +54,8 @@
             fullname: fullname,
             number: number
         };
-        analytics.identify('9177977573', {
-            email: email, 
+        analytics.identify('test_user_id', {
+            email: email,
             fullname: fullname,
         });
       analytics.track('destination submitted', user, function() {
@@ -66,5 +66,5 @@
         })
       }
     </script>
-</body> 
+</body>
 </html>
