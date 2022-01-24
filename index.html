@@ -58,9 +58,10 @@
             email: email,
             fullname: fullname,
         });
-      analytics.track('destination submitted', user, function() {
+      analytics.track('Form Submitted', {
+        user
         });
-      analytics.track('whats yo numba', contactInfo, function() {
+      analytics.track('Number Submitted', contactInfo, function() {
             window.location.href = "";
         })
       }
