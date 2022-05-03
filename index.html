@@ -50,7 +50,9 @@
     <textarea cols="81" name="details" required="" rows="3">
     </textarea>
     <br><br>
-    Name: <input name="fullname" required="" size="75" type="text"/>
+    First Name: <input name="firstname" required="" size="75" type="text"/>
+    <br><br>
+    Last Name: <input name="lastname" required="" size="75" type="text"/>
     <br><br>
     Email: <input name="email" required="" size="75" type="text"/>
     <br><br>
@@ -65,7 +67,8 @@
         e.preventDefault();
         var form = e.target;
         var email = form["email"].value;
-        var fullname = form["fullname"].value;
+        var firstname = form["firstname"].value;
+        var lastname = form["lastname"].value;
         var destination = form["destination"].value;
         var number = form["number"].value;
         var details = form["details"].value;
@@ -87,7 +90,7 @@
         });*/
         alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
-        braze.getUser().setPhoneNumber(number);
+        braze.getUser().setFirstName(firstname);
 
 
       //analytics.track('Form Submitted', user);
