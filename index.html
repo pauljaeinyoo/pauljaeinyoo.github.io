@@ -35,13 +35,11 @@
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
     </script>
-
 </head>
 
 <body>
 <h1>What is your favorite place to travel?!</h1>
-<p>I am building a directory of the sweetest travel destinations.</p>
-<form name="travel" onsubmit="identify(event)">
+<form name="travel" onsubmit="identify(event);return false">
      What is your favorite destination?
     <input name="destination" required="" size="81" type="text"/>
     <br><br>
@@ -84,19 +82,19 @@
             fullname: fullname,
             number: number
         };
-        /*analytics.identify('test_user_id', {
-            email: email,
-            fullname: fullname,
-        });*/
         alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
         //braze.getUser().setLastName(lastname);
+      /*analytics.identify('test_user_id', {
+          email: email,
+          fullname: fullname,
+      });*/
       //analytics.track('Form Submitted', user);
       //analytics.track('Number Submitted', contactInfo);
       }
     </script>
-
+    <br><br><br><br>
     <button class="btn btn-primary" onclick="
       braze.logCustomEvent('Button Clicked', {
         'email_subject': 'Welcome!  Just one more step!',
