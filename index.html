@@ -87,6 +87,8 @@
         });*/
         alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
+        braze.getUser().setPhoneNumber(number);
+
 
       //analytics.track('Form Submitted', user);
       //analytics.track('Number Submitted', contactInfo);
