@@ -87,7 +87,8 @@
         alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
-        //braze.getUser().setLastName(lastname);
+        braze.getUser().setLastName(lastname);
+        window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
           fullname: fullname,
