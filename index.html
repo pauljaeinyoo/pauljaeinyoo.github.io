@@ -41,7 +41,7 @@
 <body>
 <h1>What is your favorite place to travel?!</h1>
 <p>I am building a directory of the sweetest travel destinations.</p>
-<form name="travel" onsubmit="identify(e)" method="post">
+<form name="travel" onsubmit="identify(event)" method="post">
      What is your favorite destination?
     <input name="destination" required="" size="81" type="text"/>
     <br><br><br>
@@ -58,6 +58,7 @@
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form>
+
     <!--Placeholder for identify and track script -->
     <script type="text/javascript">
       function identify(e){
