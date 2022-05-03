@@ -26,10 +26,10 @@
   braze.automaticallyShowInAppMessages();
 
   // optionally set the current user's External ID
-  if (isLoggedIn){
+  /*if (isLoggedIn){
     braze.changeUser('paulfirstwebexid');
-  }
-
+  }*/
+  braze.changeUser('paulfirstwebexid');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
