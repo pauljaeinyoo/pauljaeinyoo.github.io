@@ -21,10 +21,8 @@
   braze.initialize('9ea0baba-4935-487a-9fe0-226b8e844bbf', {
     baseUrl: "sondheim.braze.com"
   });
-
   // optionally show all in-app messages without custom handling
   braze.automaticallyShowInAppMessages();
-
   // optionally set the current user's External ID
   /*if (isLoggedIn){
     braze.changeUser('paulfirstwebexid');
@@ -34,7 +32,6 @@
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
   });
-
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
     </script>
@@ -44,7 +41,7 @@
 <body>
 <h1>What is your favorite place to travel?!</h1>
 <p>I am building a directory of the sweetest travel destinations.</p>
-<form name="travel" onsubmit="identify(event)">
+<form name="travel" onsubmit="identify(e)">
      What is your favorite destination?
     <input name="destination" required="" size="81" type="text"/>
     <br><br><br>
