@@ -83,10 +83,12 @@
             fullname: fullname,
             number: number
         };
-        analytics.identify('test_user_id', {
+        /*analytics.identify('test_user_id', {
             email: email,
             fullname: fullname,
-        });
+        });*/
+        braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
+
 
       //analytics.track('Form Submitted', user);
       //analytics.track('Number Submitted', contactInfo);
