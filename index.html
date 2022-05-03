@@ -39,7 +39,7 @@
 
 <body>
 <h1>What is your favorite place to travel?!</h1>
-<form name="travel" onsubmit="identify(event);return false">
+<form name="travel" onsubmit="identify(event)">
      What is your favorite destination?
     <input name="destination" required="" size="81" type="text"/>
     <br><br>
@@ -100,7 +100,11 @@
         'email_subject': 'Welcome!  Just one more step!',
         'campaign_name': 'Profile activation',
         'button_clicked': 'Complete my profile'
-      })
+      });
+      braze.getUser().setCustomUserAttribute(
+        'campaign',
+        'logged'
+          );
       "> Track: Email Link Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br>with campaign info</span> </button>
 </body>
 </html>
