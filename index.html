@@ -34,6 +34,11 @@
   });
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
+  //IAM test
+  var message = new braze.SlideUpMessage("Welcome to Braze! Tell me about yourself.");
+  message.slideFrom = braze.InAppMessage.SlideFrom.TOP;
+  braze.showInAppMessage(message);
+
     </script>
 </head>
 
@@ -84,16 +89,13 @@
             lastname: lastname,
             number: number
         };
-        //alert("The form was submitted");
+        alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
         braze.getUser().setLastName(lastname);
         braze.getUser().setPhoneNumber(number);
         braze.getUser().setEmail(email);
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
-        var message = new braze.SlideUpMessage("Welcome to Braze! Form Submitted.");
-        message.slideFrom = braze.InAppMessage.SlideFrom.TOP;
-        braze.showInAppMessage(message);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
