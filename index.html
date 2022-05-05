@@ -41,20 +41,20 @@
 <h1>What is your favorite place to travel?!</h1>
 <form name="travel" onsubmit="identify(event)">
      What is your favorite destination?
-    <input name="destination" required="" size="81" type="text"/>
+    <input name="destination" size="81" type="text"/>
     <br><br>
     Any recommendations (cool things to do, places to visit or restaurants to eat)?
     <br><br>
-    <textarea cols="81" name="details" required="" rows="3">
+    <textarea cols="81" name="details" rows="3">
     </textarea>
     <br><br>
-    First Name: <input name="firstname" required="" size="75" type="text"/>
+    First Name: <input name="firstname" size="75" type="text"/>
     <br><br>
-    Last Name: <input name="lastname" required="" size="75" type="text"/>
+    Last Name: <input name="lastname" size="75" type="text"/>
     <br><br>
-    Email: <input name="email" required="" size="75" type="text"/>
+    Email: <input name="email" size="75" type="text"/>
     <br><br>
-    Number: <input name="number" required="" size="75" type="number"/>
+    Number: <input name="number" size="75" type="number"/>
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form>
@@ -88,6 +88,9 @@
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
         braze.getUser().setLastName(lastname);
+        braze.getUser().setPhoneNumber(number);
+        braze.getUser().setEmail(email);
+        braze.getUser().setCustomUserAttribute('fav_destination',destination);
         var message = new braze.SlideUpMessage("Welcome to Braze! Form Submitted.");
         message.slideFrom = braze.InAppMessage.SlideFrom.TOP;
         braze.showInAppMessage(message);
