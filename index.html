@@ -84,10 +84,13 @@
             lastname: lastname,
             number: number
         };
-        alert("The form was submitted");
+        //alert("The form was submitted");
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
         braze.getUser().setLastName(lastname);
+        var message = new braze.SlideUpMessage("Welcome to Braze! Form Submitted.");
+        message.slideFrom = braze.InAppMessage.SlideFrom.TOP;
+        braze.showInAppMessage(message);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
