@@ -112,8 +112,30 @@
         'trait1',
         'true'
           );
-      "> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br>with campaign info</span> </button>
+      "> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br></span></button>
+
+      <br>
+
+      <button id="scriptExample" class="ab-message-button" type="button" style="background-color: rgb(27, 120, 207);">
+          <span style="color: rgb(255, 255, 255);">Submit</span>
+      </button>      
+            <script>
+            // wait for the `appboyBridge` ready event, "ab.BridgeReady"
+            window.addEventListener("ab.BridgeReady", function(){
+              // event handler when the button is clicked
+              document.querySelector("#scriptExample").onclick = function(){
+                appboyBridge.getUser().setEmail(emailField.value);
+                appboyBridge.logClick("button");
+                appboyBridge.getUser().setCustomUserAttribute("newsletter_sign_up", "true");
+                appboyBridge.logCustomEvent("newsletter_sign_up");
+                appboyBridge.requestImmediateDataFlush();
+                appboyBridge.closeMessage();
+              };
+            }, false);
+            </script>
+
       <br><br>
+
       <button id="toggle" type="button">Toggle Cards Feed</button>
       <button id="hide" type="button">Hide Cards Feed</button>
       <button id="show" type="button">Show Cards Feed</button>
