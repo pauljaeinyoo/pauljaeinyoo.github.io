@@ -35,12 +35,6 @@
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
   //IAM test
-  self.importScripts('https://js.appboycdn.com/web-sdk/4.0/service-worker.js');
-  braze.requestPushPermission()
-  var message = new braze.SlideUpMessage("Welcome to Braze! Tell me about yourself.");
-  message.slideFrom = braze.InAppMessage.SlideFrom.TOP;
-  braze.showInAppMessage(message);
-
     </script>
 </head>
 
