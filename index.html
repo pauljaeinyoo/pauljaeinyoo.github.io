@@ -157,13 +157,11 @@
           <span style="color: rgb(255, 255, 255);">New Button!</span>
       </button>
             <script>
-              window.addEventListener("ab.BridgeReady", function(){
               document.querySelector("#scriptExample").onclick = function(){
                 braze.logClick("scriptExample");
                 braze.getUser().setCustomUserAttribute("new_button", "yas");
                 braze.logCustomEvent("new_button_event");
               };
-            }, false);
             </script>
 </body>
 </html>
