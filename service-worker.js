@@ -28,6 +28,7 @@ const PRECACHE_URLS = [
 
 self.importScripts('https://js.appboycdn.com/web-sdk/4.0/service-worker.js');
 
+/*
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -75,3 +76,4 @@ self.addEventListener('fetch', event => {
     );
   }
 });
+*/
