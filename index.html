@@ -89,6 +89,8 @@
     <br><br>
     Number: <input name="number" size="75" type="number"/>
     <br><br>
+    Preference: <input name="preference" size="75" type="text"/>
+    <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form>
 
@@ -103,6 +105,7 @@
         var destination = form["destination"].value;
         var number = form["number"].value;
         var details = form["details"].value;
+        var preference = form["preference"].value;
         var user = {
             email: email,
             firstname: firstname,
@@ -125,6 +128,7 @@
         braze.getUser().setEmail(email);
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
         braze.getUser().setCustomUserAttribute('recommendations',details);
+        braze.getUser().addToCustomAttributeArray('preference', preference);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
