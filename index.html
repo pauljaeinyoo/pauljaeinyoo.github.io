@@ -34,7 +34,7 @@
   /*if (isLoggedIn){
     braze.changeUser('paulfirstwebexid');
   }*/
-  braze.changeUser('paul_external_id');
+  //braze.changeUser('paul_external_id');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
@@ -91,6 +91,8 @@
     <br><br>
     Preference: <input name="preference" size="75" type="text"/>
     <br><br>
+    external_id (optional): <input name="external_id" size="75" type="text"/>
+    <br><br>
     <input name="Submit Form" type="submit" value="submit"/>
 </form>
 
@@ -106,18 +108,13 @@
         var number = form["number"].value;
         var details = form["details"].value;
         var preference = form["preference"].value;
+        var external_id = form["external_id"].value;
         var user = {
             email: email,
             firstname: firstname,
             lastname: lastname,
             destination: destination,
             details: details,
-            number: number
-        };
-        var contactInfo = {
-            email: email,
-            firstname: firstname,
-            lastname: lastname,
             number: number
         };
         alert("The form was submitted");
@@ -129,6 +126,7 @@
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
         braze.getUser().setCustomUserAttribute('recommendations',details);
         braze.getUser().addToCustomAttributeArray('preference', preference);
+        braze.changeUser(external_id;);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
@@ -142,9 +140,7 @@
 
     <button class="btn btn-primary" onclick="
       braze.logCustomEvent('Button Clicked', {
-        'email_subject': 'Welcome!  Just one more step!',
-        'campaign_name': 'Profile activation',
-        'button_clicked': 'Complete my profile'
+        'button_clicked': true
       });
       braze.getUser().setCustomUserAttribute(
         'trait1',
