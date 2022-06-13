@@ -118,6 +118,7 @@
             number: number
         };
         alert("The form was submitted");
+        braze.changeUser(external_id;);
         braze.logCustomEvent('Form Submitted', {'paulTestKey': true});
         braze.getUser().setFirstName(firstname);
         braze.getUser().setLastName(lastname);
@@ -126,7 +127,6 @@
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
         braze.getUser().setCustomUserAttribute('recommendations',details);
         braze.getUser().addToCustomAttributeArray('preference', preference);
-        braze.changeUser(external_id;);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
