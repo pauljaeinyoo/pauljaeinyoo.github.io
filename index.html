@@ -35,7 +35,7 @@
   /*if (isLoggedIn){
     braze.changeUser('paulfirstwebexid');
   }*/
-  braze.changeUser('paul_iam_html');
+  braze.changeUser('marco_demo_id');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
@@ -155,7 +155,7 @@
       </button>
             <script>
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("new_button_clicked", "yas");
+                braze.getUser().setCustomUserAttribute("new_button_clicked", "yes");
                 braze.logCustomEvent("new_button_event");
               };
             </script>
