@@ -154,7 +154,7 @@
       </button>
             <script>
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("new_button", "yas");
+                braze.getUser().setCustomUserAttribute("new_button_clicked", "yas");
                 braze.logCustomEvent("new_button_event");
               };
             </script>
