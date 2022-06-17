@@ -33,7 +33,7 @@
   braze.automaticallyShowInAppMessages();
 
   //IAM KVP handler
-  /*braze.subscribeToInAppMessage(function(inAppMessage) {
+  braze.subscribeToInAppMessage(function(inAppMessage) {
   if (inAppMessage instanceof braze.InAppMessage) {
     const extras = inAppMessage.extras;
     if (extras) {
@@ -46,7 +46,7 @@
     }
   }
   braze.showInAppMessage(inAppMessage);
-});*/
+});
 
   braze.changeUser('paul_external_id');
   // if you use Content Cards
@@ -167,9 +167,9 @@
           <span style="color: rgb(255, 255, 255);">New Button!</span>
       </button>
             <script>
-              const kvp = inAppMessage.extras;
+              const kvp = extras;
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("kvp_array", kvp);
+                braze.getUser().setCustomUserAttribute("test1", kvp);
                 braze.logCustomEvent("new_button_event");
               };
             </script>
