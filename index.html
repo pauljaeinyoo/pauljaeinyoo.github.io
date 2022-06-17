@@ -31,17 +31,23 @@
   });
   // optionally show all in-app messages without custom handling
   //braze.automaticallyShowInAppMessages();
+
+  //IAM KVP handler
   braze.subscribeToInAppMessage(function(inAppMessage) {
   if (inAppMessage instanceof braze.InAppMessage) {
     const extras = inAppMessage.extras;
     if (extras) {
       for (const key in extras) {
-        console.log("key: " + key + ", value: " + extras[key]);
+        braze.getUser().setCustomUserAttribute(
+        key,
+        extras
+          );
       }
     }
   }
   braze.showInAppMessage(inAppMessage);
 });
+
   braze.changeUser('paul_external_id');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
