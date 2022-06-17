@@ -31,9 +31,9 @@
   });
   // optionally show all in-app messages without custom handling
   //braze.automaticallyShowInAppMessages();
-  const extras = braze.inAppMessage.extras;
   //IAM KVP handler
   braze.subscribeToInAppMessage(function(inAppMessage) {
+  const extras = braze.inAppMessage.extras;
   if ( extras != null ) {
       braze.showInAppMessage(inAppMessage);
       console.log(extras);
