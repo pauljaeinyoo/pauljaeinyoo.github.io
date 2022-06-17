@@ -167,7 +167,7 @@
           <span style="color: rgb(255, 255, 255);">New Button!</span>
       </button>
             <script>
-              let kvp = inAppMessage.extras;
+              const kvp = inAppMessage.extras;
               document.querySelector("#scriptExample").onclick = function(){
                 braze.getUser().setCustomUserAttribute("kvp_array", kvp);
                 braze.logCustomEvent("new_button_event");
