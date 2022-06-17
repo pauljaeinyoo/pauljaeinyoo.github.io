@@ -167,11 +167,9 @@
           <span style="color: rgb(255, 255, 255);">New Button!</span>
       </button>
             <script>
-              const kvp = extras;
+              const kvp2 = extras["kvp2"];
               document.querySelector("#scriptExample").onclick = function(){
-                for (const key in kvp) {
-                  braze.getUser().setCustomUserAttribute(key, kvp[key]);
-                }
+                braze.getUser().setCustomUserAttribute("kvp2", kvp2);
                 braze.logCustomEvent("new_button_event");
               };
             </script>
