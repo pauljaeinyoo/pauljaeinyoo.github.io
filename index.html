@@ -30,22 +30,16 @@
     allowUserSuppliedJavascript: true
   });
   // optionally show all in-app messages without custom handling
-  braze.automaticallyShowInAppMessages();
-
+  //braze.automaticallyShowInAppMessages();
+  const extras = braze.inAppMessage.extras;
   //IAM KVP handler
   braze.subscribeToInAppMessage(function(inAppMessage) {
-  if (inAppMessage instanceof braze.InAppMessage) {
-    const extras = inAppMessage.extras;
-    if (extras) {
-      for (const key in extras) {
-        braze.getUser().setCustomUserAttribute(
-        key,
-        extras
-          );
-      }
-    }
+  if ( extras != null ) {
+      braze.showInAppMessage(inAppMessage);
+      console.log(extras);
+  } else {
+      // do nothing
   }
-  braze.showInAppMessage(inAppMessage);
 });
 
   braze.changeUser('paul_external_id');
@@ -167,9 +161,8 @@
           <span style="color: rgb(255, 255, 255);">New Button!</span>
       </button>
             <script>
-              const kvp2 = extras["kvp2"];
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("kvp2", kvp2);
+                braze.getUser().setCustomUserAttribute("test1", "value1");
                 braze.logCustomEvent("new_button_event");
               };
             </script>
