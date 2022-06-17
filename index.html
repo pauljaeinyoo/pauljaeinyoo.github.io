@@ -30,10 +30,10 @@
     allowUserSuppliedJavascript: true
   });
   // optionally show all in-app messages without custom handling
-  //braze.automaticallyShowInAppMessages();
+  braze.automaticallyShowInAppMessages();
 
   //IAM KVP handler
-  braze.subscribeToInAppMessage(function(inAppMessage) {
+  /*braze.subscribeToInAppMessage(function(inAppMessage) {
   if (inAppMessage instanceof braze.InAppMessage) {
     const extras = inAppMessage.extras;
     if (extras) {
@@ -46,7 +46,7 @@
     }
   }
   braze.showInAppMessage(inAppMessage);
-});
+});*/
 
   braze.changeUser('paul_external_id');
   // if you use Content Cards
@@ -168,7 +168,7 @@
       </button>
             <script>
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("new_button_clicked", "yes");
+                braze.getUser().setCustomUserAttribute("kvp_array", inAppMessage.extras);
                 braze.logCustomEvent("new_button_event");
               };
             </script>
