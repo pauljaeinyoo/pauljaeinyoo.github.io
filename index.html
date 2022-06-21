@@ -156,12 +156,12 @@
           );
       "> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br></span></button>
       <br><br>
-
+        
       <button id="scriptExample" class="ab-message-button" type="button" style="background-color: rgb(27, 120, 207);">
           <span style="color: rgb(255, 255, 255);">Email Form</span>
       </button>
             <script>
-              const extras = inAppMessage.extras;
+              const extras = appboy.inAppMessage.extras;
               document.querySelector("#scriptExample").onclick = function(){
                 braze.getUser().addToCustomAttributeArray("kvpArray", extras);
                 braze.logCustomEvent("Email Form Buttom Clicked");
