@@ -162,6 +162,8 @@
       </button>
             <script>
               document.querySelector("#scriptExample").onclick = function(){
+                braze.getUser().setCustomUserAttribute("formClicked", true);
+                braze.logCustomEvent("Email Form Buttom Clicked");
                 braze.subscribeToInAppMessage(function(inAppMessage) {
                 if (inAppMessage instanceof braze.InAppMessage) {
                   const extras = inAppMessage.extras;
@@ -172,8 +174,6 @@
                   }
                 }
               });
-                braze.getUser().setCustomUserAttribute("formClicked", true);
-                braze.logCustomEvent("Email Form Buttom Clicked");
               };
             </script>
 </body>
