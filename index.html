@@ -30,17 +30,19 @@
     allowUserSuppliedJavascript: true
   });
   // optionally show all in-app messages without custom handling
-  braze.automaticallyShowInAppMessages();
+  //braze.automaticallyShowInAppMessages();
   //IAM KVP handler
-  /*braze.subscribeToInAppMessage(function(inAppMessage) {
-  const extras = braze.inAppMessage.extras;
-  if ( extras != null ) {
-      braze.showInAppMessage(inAppMessage);
-      console.log(extras);
-  } else {
-      // do nothing
+  braze.subscribeToInAppMessage(function(inAppMessage) {
+  if (inAppMessage instanceof braze.InAppMessage) {
+    const extras = inAppMessage.extras;
+    if (extras) {
+      for (const key in extras) {
+        console.log("key: " + key + ", value: " + extras[key]);
+      }
+    }
   }
-});*/
+  braze.showInAppMessage(inAppMessage);
+});
 
   braze.changeUser('paul_external_id');
   // if you use Content Cards
@@ -156,14 +158,14 @@
           );
       "> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br></span></button>
       <br><br>
-        
+
       <button id="scriptExample" class="ab-message-button" type="button" style="background-color: rgb(27, 120, 207);">
           <span style="color: rgb(255, 255, 255);">Email Form</span>
       </button>
             <script>
-              const extras = appboy.inAppMessage.extras;
+              const extras = braze.inAppMessage.extras;
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().addToCustomAttributeArray("kvpArray", extras);
+                braze.getUser().setCustomUserAttribute("formButtonClicked", true);
                 braze.logCustomEvent("Email Form Buttom Clicked");
               };
             </script>
