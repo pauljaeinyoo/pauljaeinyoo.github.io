@@ -162,6 +162,16 @@
       </button>
             <script>
               document.querySelector("#scriptExample").onclick = function(){
+                braze.subscribeToInAppMessage(function(inAppMessage) {
+                if (inAppMessage instanceof braze.InAppMessage) {
+                  const extras = inAppMessage.extras;
+                  if (extras) {
+                    for (const key in extras) {
+                      braze.getUser().setCustomUserAttribute(key, extras[key]);
+                    }
+                  }
+                }
+              });
                 braze.getUser().setCustomUserAttribute("formClicked", true);
                 braze.logCustomEvent("Email Form Buttom Clicked");
               };
