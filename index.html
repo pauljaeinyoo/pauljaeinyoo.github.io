@@ -43,7 +43,7 @@
   }
   braze.showInAppMessage(inAppMessage);
 });
-
+const kvp1 = braze.inAppMessage.extras["kvp1"];
   braze.changeUser('paul_external_id');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
@@ -163,9 +163,8 @@
           <span style="color: rgb(255, 255, 255);">Email Form</span>
       </button>
             <script>
-              const extras = braze.inAppMessage.extras["kvp1"];
               document.querySelector("#scriptExample").onclick = function(){
-                braze.getUser().setCustomUserAttribute("kvp1", extras);
+                braze.getUser().setCustomUserAttribute("kvp1", kvp1);
                 braze.logCustomEvent("Email Form Buttom Clicked");
               };
             </script>
