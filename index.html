@@ -161,7 +161,7 @@
           <span style="color: rgb(255, 255, 255);">Email Form</span>
       </button>
             <script>
-              const extras = braze.inAppMessage.extras;
+              const extras = inAppMessage.extras;
               document.querySelector("#scriptExample").onclick = function(){
                 braze.getUser().addToCustomAttributeArray("kvpArray", extras);
                 braze.logCustomEvent("Email Form Buttom Clicked");
