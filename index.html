@@ -140,7 +140,10 @@
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
         braze.getUser().setCustomUserAttribute('recommendations',details);
         braze.getUser().addToCustomAttributeArray('preference', preference);
-        braze.logCustomEvent(customevent);
+        braze.getDeviceId(function(deviceId) {
+          braze.logCustomEvent(customevent, {'device_id': deviceId}); 
+          console.log('The device id is ' + deviceId);
+        });
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
