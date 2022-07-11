@@ -101,6 +101,8 @@
     <br><br>
     Preference: <input name="preference" size="75" type="text"/>
     <br><br>
+    Custom Event: <input name="customevent" size="75" type="text"/>
+    <br><br>
     external_id (optional): <input name="external_id" size="75" type="text"/>
     <br><br>
     <input name="Submit Form" type="submit" value="submit"/>
@@ -118,6 +120,7 @@
         var number = form["number"].value;
         var details = form["details"].value;
         var preference = form["preference"].value;
+        var customevent = form["customevent"].value;
         var external_id = form["external_id"].value;
         var user = {
             email: email,
@@ -137,6 +140,7 @@
         braze.getUser().setCustomUserAttribute('fav_destination',destination);
         braze.getUser().setCustomUserAttribute('recommendations',details);
         braze.getUser().addToCustomAttributeArray('preference', preference);
+        braze.logCustomEvent(customevent);
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
