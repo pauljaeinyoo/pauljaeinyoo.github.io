@@ -146,6 +146,7 @@
         });
         braze.subscribeToContentCardsUpdates(function(updates){
         const cardKVP = cards.extras;
+        console.log(JSON.stringify(cardKVP));
         if (cardKVP) {
           for (const key in cardKVP) {
             braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
