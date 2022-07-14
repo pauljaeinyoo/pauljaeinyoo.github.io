@@ -71,6 +71,15 @@
 
    toggle.onclick = function(){
       braze.toggleContentCards(feed);
+      braze.subscribeToContentCardsUpdates(function(updates){
+        const cardKVP = cards.extras;
+        console.log(JSON.stringify(cardKVP));
+        if (cardKVP) {
+          for (const key in cardKVP) {
+            braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
+            }
+          }
+      });
    }
 
    hide.onclick = function(){
@@ -144,15 +153,6 @@
         braze.logCustomEvent(customevent, {'device_id': deviceId}); 
           console.log('The device id is ' + deviceId);
         });
-        braze.subscribeToContentCardsUpdates(function(updates){
-        const cardKVP = cards.extras;
-        console.log(JSON.stringify(cardKVP));
-        if (cardKVP) {
-          for (const key in cardKVP) {
-            braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
-            }
-          }
-      });
         window.location.reload();
       /*analytics.identify('test_user_id', {
           email: email,
