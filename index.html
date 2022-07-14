@@ -72,7 +72,7 @@
    toggle.onclick = function(){
       braze.toggleContentCards(feed);
       braze.subscribeToContentCardsUpdates(function(updates){
-        const cardKVP = cards.extras;
+        const cardKVP = updates.extras;
         console.log(JSON.stringify(cardKVP));
         if (cardKVP) {
           for (const key in cardKVP) {
