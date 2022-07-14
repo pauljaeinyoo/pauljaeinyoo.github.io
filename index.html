@@ -141,7 +141,7 @@
         braze.getUser().setCustomUserAttribute('recommendations',details);
         braze.getUser().addToCustomAttributeArray('preference', preference);
         braze.getDeviceId(function(deviceId) {
-          braze.logCustomEvent(customevent, {'device_id': deviceId}); 
+        braze.logCustomEvent(customevent, {'device_id': deviceId}); 
           console.log('The device id is ' + deviceId);
         });
         braze.subscribeToContentCardsUpdates(function(updates){
