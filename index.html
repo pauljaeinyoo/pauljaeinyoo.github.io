@@ -43,7 +43,11 @@
   }
   braze.showInAppMessage(inAppMessage);
 });
-  braze.subscribeToContentCardsUpdates(function(card){
+
+  braze.changeUser('paul_nested_attributes');
+  // if you use Content Cards
+  braze.subscribeToContentCardsUpdates(function(cards){
+    // cards have been updated
     const cardKVP = card.extras;
     console.log(JSON.stringify(cardKVP));
     if (cardKVP) {
@@ -51,12 +55,6 @@
         braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
         }
       }
-  });
-
-  braze.changeUser('paul_nested_attributes');
-  // if you use Content Cards
-  braze.subscribeToContentCardsUpdates(function(cards){
-    // cards have been updated
   });
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
