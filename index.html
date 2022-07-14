@@ -162,9 +162,13 @@
       braze.getUser().setCustomUserAttribute('trait1','true');
       braze.subscribeToContentCardsUpdates(function(updates){
         const cardKVP = cards.extras;
-        console.log(cardKVP);
+        if (cardKVP) {
+          for (const key in cardKVP) {
+            braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
+            }
+          }
       });
-      "> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br></span></button>
+      "> Track: Button Clicked + Card KVPs<span id="collapseExample" class="collapse" style="font-size: 0.85em;"><br></span></button>
       <br><br>
 
       <button id="scriptExample" class="ab-message-button" type="button" style="background-color: rgb(27, 120, 207);">
