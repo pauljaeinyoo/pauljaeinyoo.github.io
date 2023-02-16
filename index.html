@@ -29,6 +29,7 @@
     minimumIntervalBetweenTriggerActionsInSeconds: 0,
     allowUserSuppliedJavascript: true
   });
+  braze.changeUser('paul_web_id');
   // optionally show all in-app messages without custom handling
   //braze.automaticallyShowInAppMessages();
   //IAM KVP handler
@@ -43,12 +44,18 @@
   }
   braze.showInAppMessage(inAppMessage);
 });
-  braze.changeUser('paul_web_id');
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
   });
-  // Be sure to call `openSession` after `automaticallyShowInAppMessages`
+  //Feature Flags
+  const featureFlag = braze.getFeatureFlag("paul_test");
+  if (feature.enabled) {
+    console.log(`paul_test is enabled`);
+  } else {
+    console.log(`paul_test is not enabled`);
+  }
+  // Be sure to call `openSession`
   braze.openSession();
   braze.requestPushPermission()
     </script>
