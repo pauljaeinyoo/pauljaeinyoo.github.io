@@ -43,18 +43,10 @@
   }
   braze.showInAppMessage(inAppMessage);
 });
-
   braze.changeUser('iam_button_default_attribute');
   // if you use Content Cards
   braze.subscribeToContentCards(function(cards){
     // cards have been updated
-    const cardKVP = card.extras;
-    console.log(JSON.stringify(cardKVP));
-    if (cardKVP) {
-      for (const key in cardKVP) {
-        braze.getUser().setCustomUserAttribute(key, cardKVP[key]);
-        }
-      }
   });
   // Be sure to call `openSession` after `automaticallyShowInAppMessages`
   braze.openSession();
