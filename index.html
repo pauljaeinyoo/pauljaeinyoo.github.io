@@ -50,17 +50,19 @@
   });
   //Feature Flags
   const featureFlag = braze.getFeatureFlag("paul_test");
-  if (feature.enabled) {
+  if (featureFag.enabled) {
     console.log(`paul_test is enabled`);
   } else {
     console.log(`paul_test is not enabled`);
   }
+  const featureFlagProp = braze.getFeatureFlag("prop");
   // Be sure to call `openSession`
   braze.openSession();
   braze.requestPushPermission()
     </script>
 </head>
 <body>
+
 
 <nav>
     <h3>Your Personalized Feed</h3>
@@ -87,6 +89,8 @@
       braze.showContentCards(feed);
    }
 </script>
+
+
 <h1>What is your favorite place to travel?!</h1>
 <form name="travel" onsubmit="identify(event)">
      What is your favorite destination?
@@ -111,7 +115,7 @@
     <br><br>
     external_id (optional): <input name="external_id" size="75" type="text"/>
     <br><br>
-    <input name="Submit Form" type="submit" value="submit"/>
+    <input name="Submit Form" type="submit" value="Submit"/>
 </form>
 
     <!--Placeholder for identify and track script -->
