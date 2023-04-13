@@ -29,7 +29,7 @@
     minimumIntervalBetweenTriggerActionsInSeconds: 0,
     allowUserSuppliedJavascript: true
   });
-  braze.changeUser('samsung_duration');
+  braze.changeUser('paul_external_id');
   // optionally show all in-app messages without custom handling
   //braze.automaticallyShowInAppMessages();
   //IAM KVP handler
@@ -48,14 +48,6 @@
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
   });
-  //Feature Flags
-  const featureFlag = braze.getFeatureFlag("paul_test");
-  if (featureFlag.enabled) {
-    console.log(`paul_test is enabled`);
-  } else {
-    console.log(`paul_test is not enabled`);
-  }
-  const featureFlagProp = braze.getFeatureFlag("prop");
   // Be sure to call `openSession`
   braze.openSession();
   braze.requestPushPermission()
