@@ -48,6 +48,14 @@
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
   });
+  //Feature Flags
+  const featureFlag = braze.getFeatureFlag("paul_test");
+  if (featureFlag.enabled) {
+    console.log(`paul_test is enabled`);
+  } else {
+    console.log(`paul_test is not enabled`);
+  }
+  const featureFlagProp = braze.getFeatureFlag("prop");
   // Be sure to call `openSession`
   braze.openSession();
   braze.requestPushPermission()
