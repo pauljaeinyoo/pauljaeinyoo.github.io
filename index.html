@@ -32,9 +32,9 @@
   braze.changeUser('paul_phone_test');
   braze.addAlias("9177977573", "phone");
   // optionally show all in-app messages without custom handling
-  //braze.automaticallyShowInAppMessages();
+  braze.automaticallyShowInAppMessages();
   //IAM KVP handler
-  braze.subscribeToInAppMessage(function(inAppMessage) {
+  /*braze.subscribeToInAppMessage(function(inAppMessage) {
   if (inAppMessage instanceof braze.InAppMessage) {
     const extras = inAppMessage.extras;
     if (extras) {
@@ -44,7 +44,7 @@
     }
   }
   braze.showInAppMessage(inAppMessage);
-});
+});*/
   // if you use Content Cards
   braze.subscribeToContentCardsUpdates(function(cards){
     // cards have been updated
