@@ -45,7 +45,6 @@
 
     label {
       font-weight: 600;
-      margin-bottom: 0.25rem;
     }
 
     input[type="text"],
@@ -66,6 +65,7 @@
       gap: 1rem;
       justify-content: center;
       margin: 1rem 0;
+      flex-wrap: wrap;
     }
 
     button,
@@ -93,43 +93,52 @@
     }
   </style>
 
-  <!-- Braze + Service Worker Scripts -->
+  <!-- Braze Loader and Init -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
-  </script>
 
-  <script type="text/javascript">
     +function(a,p,P,b,y){
       a.braze={};a.brazeQueue=[];
-      const s = "..."; // truncated for clarity — insert full Braze method list here
-      // leave this block as-is from your original for SDK loader
-    }(window,document,'script');
+      const s="BrazeSdkMetadata DeviceProperties Card Card.prototype.dismissCard Card.prototype.removeAllSubscriptions Card.prototype.removeSubscription Card.prototype.subscribeToClickedEvent Card.prototype.subscribeToDismissedEvent Card.fromContentCardsJson ImageOnly CaptionedImage ClassicCard ControlCard ContentCards ContentCards.prototype.getUnviewedCardCount Feed Feed.prototype.getUnreadCardCount ControlMessage InAppMessage InAppMessage.SlideFrom InAppMessage.ClickAction InAppMessage.DismissType InAppMessage.OpenTarget InAppMessage.ImageStyle InAppMessage.Orientation InAppMessage.TextAlignment InAppMessage.CropType InAppMessage.prototype.closeMessage InAppMessage.prototype.removeAllSubscriptions InAppMessage.prototype.removeSubscription InAppMessage.prototype.subscribeToClickedEvent InAppMessage.prototype.subscribeToDismissedEvent InAppMessage.fromJson FullScreenMessage ModalMessage HtmlMessage SlideUpMessage User User.Genders User.NotificationSubscriptionTypes User.prototype.addAlias User.prototype.addToCustomAttributeArray User.prototype.addToSubscriptionGroup User.prototype.getUserId User.prototype.incrementCustomUserAttribute User.prototype.removeFromCustomAttributeArray User.prototype.removeFromSubscriptionGroup User.prototype.setCountry User.prototype.setCustomLocationAttribute User.prototype.setCustomUserAttribute User.prototype.setDateOfBirth User.prototype.setEmail User.prototype.setEmailNotificationSubscriptionType User.prototype.setFirstName User.prototype.setGender User.prototype.setHomeCity User.prototype.setLanguage User.prototype.setLastKnownLocation User.prototype.setLastName User.prototype.setPhoneNumber User.prototype.setPushNotificationSubscriptionType InAppMessageButton InAppMessageButton.prototype.removeAllSubscriptions InAppMessageButton.prototype.removeSubscription InAppMessageButton.prototype.subscribeToClickedEvent FeatureFlag FeatureFlag.prototype.getStringProperty FeatureFlag.prototype.getNumberProperty FeatureFlag.prototype.getBooleanProperty automaticallyShowInAppMessages destroyFeed hideContentCards showContentCards showFeed showInAppMessage deferInAppMessage toggleContentCards toggleFeed changeUser destroy getDeviceId initialize isPushBlocked isPushPermissionGranted isPushSupported logCardClick logCardDismissal logCardImpressions logContentCardImpressions logContentCardClick logCustomEvent logFeedDisplayed logInAppMessageButtonClick logInAppMessageClick logInAppMessageHtmlClick logInAppMessageImpression logPurchase openSession requestPushPermission removeAllSubscriptions removeSubscription requestContentCardsRefresh requestFeedRefresh refreshFeatureFlags requestImmediateDataFlush enableSDK isDisabled setLogger setSdkAuthenticationSignature addSdkMetadata disableSDK subscribeToContentCardsUpdates subscribeToFeedUpdates subscribeToInAppMessage subscribeToSdkAuthenticationFailures toggleLogging unregisterPush wipeData handleBrazeAction subscribeToFeatureFlagsUpdates getAllFeatureFlags logFeatureFlagImpression"
+      .split(" ");
+      for (var i = 0; i < s.length; i++) {
+        var m = s[i], k = a.braze, l = m.split(".");
+        for (var j = 0; j < l.length - 1; j++) k = k[l[j]];
+        k[l[j]] = new Function("return function " + m.replace(/\./g, "_") +
+          "(){window.brazeQueue.push(arguments); return true}")();
+      }
+      y = p.createElement(P);
+      y.type = 'text/javascript';
+      y.src = 'https://js.appboycdn.com/web-sdk/5.1/braze.min.js';
+      y.async = 1;
+      b = p.getElementsByTagName(P)[0];
+      b.parentNode.insertBefore(y, b);
+    }(window, document, 'script');
 
-    braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
-      baseUrl: "sondheim.braze.com",
-      enableLogging: true,
-      minimumIntervalBetweenTriggerActionsInSeconds: 0,
-      allowUserSuppliedJavascript: true  
+    // Initialize once Braze is ready
+    document.addEventListener("DOMContentLoaded", function () {
+      braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
+        baseUrl: "sondheim.braze.com",
+        enableLogging: true,
+        allowUserSuppliedJavascript: true
+      });
+
+      braze.toggleLogging();
+      braze.changeUser('pauljy');
+      braze.openSession(() => {
+        braze.requestContentCardsRefresh();
+        braze.showContentCards(document.getElementById("feed"));
+      });
     });
-
-    braze.toggleLogging();
-    braze.changeUser('pauljy');
-    braze.automaticallyShowInAppMessages();
-
-    const featureFlag = braze.getFeatureFlag("paul_test");
-    console.log(`paul_test is ${featureFlag.enabled ? "enabled" : "not enabled"}`);
-
-    braze.openSession();
-    braze.requestPushPermission();
   </script>
 </head>
 
 <body>
   <nav>
     <h3>Your Personalized Feed</h3>
-    <div id="feed">Loading cards...</div>
+    <div id="feed">Loading...</div>
   </nav>
 
   <main>
@@ -142,50 +151,32 @@
     </div>
 
     <form name="travel" onsubmit="identify(event)">
-      <div>
-        <label>Favorite Destination:</label>
-        <input name="destination" type="text" />
-      </div>
+      <label>Favorite Destination:</label>
+      <input name="destination" type="text" />
 
-      <div>
-        <label>Recommendations (things to do, places, restaurants):</label>
-        <textarea name="details" rows="3"></textarea>
-      </div>
+      <label>Recommendations (things to do, places, restaurants):</label>
+      <textarea name="details" rows="3"></textarea>
 
-      <div>
-        <label>First Name:</label>
-        <input name="firstname" type="text" />
-      </div>
+      <label>First Name:</label>
+      <input name="firstname" type="text" />
 
-      <div>
-        <label>Last Name:</label>
-        <input name="lastname" type="text" />
-      </div>
+      <label>Last Name:</label>
+      <input name="lastname" type="text" />
 
-      <div>
-        <label>Email:</label>
-        <input name="email" type="text" />
-      </div>
+      <label>Email:</label>
+      <input name="email" type="text" />
 
-      <div>
-        <label>Phone Number:</label>
-        <input name="number" type="number" />
-      </div>
+      <label>Phone Number:</label>
+      <input name="number" type="number" />
 
-      <div>
-        <label>Preference:</label>
-        <input name="preference" type="text" />
-      </div>
+      <label>Preference:</label>
+      <input name="preference" type="text" />
 
-      <div>
-        <label>Custom Event Name:</label>
-        <input name="customevent" type="text" />
-      </div>
+      <label>Custom Event Name:</label>
+      <input name="customevent" type="text" />
 
-      <div>
-        <label>External ID (optional):</label>
-        <input name="external_id" type="text" />
-      </div>
+      <label>External ID (optional):</label>
+      <input name="external_id" type="text" />
 
       <input type="submit" value="Submit" />
     </form>
@@ -203,14 +194,15 @@
   </main>
 
   <script>
-    const toggle = document.getElementById("toggle");
-    const hide = document.getElementById("hide");
-    const show = document.getElementById("show");
-    const feed = document.getElementById("feed");
-
-    toggle.onclick = () => braze.toggleContentCards(feed);
-    hide.onclick = () => braze.hideContentCards();
-    show.onclick = () => braze.showContentCards(feed);
+    document.getElementById("toggle").onclick = () => {
+      braze.toggleContentCards(document.getElementById("feed"));
+    };
+    document.getElementById("hide").onclick = () => {
+      braze.hideContentCards();
+    };
+    document.getElementById("show").onclick = () => {
+      braze.showContentCards(document.getElementById("feed"));
+    };
 
     function identify(e) {
       e.preventDefault();
@@ -228,8 +220,6 @@
       alert("The form was submitted");
 
       braze.changeUser(external_id);
-      braze.logCustomEvent("Form Submitted", { paulTestKey: true });
-
       const user = braze.getUser();
       user.setFirstName(firstname);
       user.setLastName(lastname);
@@ -247,20 +237,9 @@
       window.location.reload();
     }
 
-    document.querySelector("#scriptExample").onclick = function () {
+    document.getElementById("scriptExample").onclick = function () {
       braze.getUser().setCustomUserAttribute("formClicked", true);
       braze.logCustomEvent("Email Form Button Clicked");
-
-      braze.subscribeToInAppMessage(function (inAppMessage) {
-        if (inAppMessage instanceof braze.InAppMessage) {
-          const extras = inAppMessage.extras;
-          if (extras) {
-            for (const key in extras) {
-              braze.getUser().setCustomUserAttribute(key, extras[key]);
-            }
-          }
-        }
-      });
     };
   </script>
 </body>
