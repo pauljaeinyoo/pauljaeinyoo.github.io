@@ -68,72 +68,56 @@
             opacity: 0.9;
         }
 
-        .auth-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
+                 .category-section {
+             background: white;
+             border-radius: 20px;
+             padding: 30px;
+             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+             margin-bottom: 30px;
+             backdrop-filter: blur(10px);
+         }
 
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #f0f0f0;
-        }
+         .category-tabs {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+             gap: 15px;
+             margin-bottom: 0;
+         }
 
-        .auth-tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-        }
+         .category-tab {
+             padding: 15px 20px;
+             text-align: center;
+             background: #f8f9fa;
+             border: 2px solid #e1e5e9;
+             border-radius: 12px;
+             font-size: 1rem;
+             font-weight: 600;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             color: #666;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             gap: 8px;
+         }
 
-        .auth-tab.active {
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
-        }
+         .category-tab i {
+             font-size: 1.2rem;
+         }
 
-        .auth-form {
-            display: none;
-        }
+         .category-tab.active {
+             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+             color: white;
+             border-color: #667eea;
+             transform: translateY(-2px);
+             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+         }
 
-        .auth-form.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
+         .category-tab:hover:not(.active) {
+             background: #e9ecef;
+             border-color: #667eea;
+             transform: translateY(-1px);
+         }
 
         .btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -153,58 +137,9 @@
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .app-section {
-            display: none;
-        }
-
-        .app-section.active {
-            display: block;
-        }
-
-        .user-info {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .user-welcome {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logout-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: #ff5252;
-            transform: translateY(-1px);
-        }
+                 .app-section {
+             display: block;
+         }
 
         .todo-container {
             background: white;
@@ -358,11 +293,23 @@
             color: white;
         }
 
-        .todo-text {
-            flex: 1;
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
+                 .todo-text {
+             flex: 1;
+             font-size: 1.1rem;
+             line-height: 1.4;
+         }
+
+         .todo-category-badge {
+             display: inline-block;
+             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+             color: white;
+             padding: 2px 8px;
+             border-radius: 12px;
+             font-size: 0.75rem;
+             font-weight: 600;
+             margin-right: 8px;
+             opacity: 0.8;
+         }
 
         .todo-actions {
             display: flex;
@@ -422,53 +369,67 @@
         .priority-medium { border-left-color: #ffc107 !important; }
         .priority-low { border-left-color: #28a745 !important; }
 
-        .priority-selector {
-            margin-left: 10px;
-        }
+                 .priority-selector, .category-selector {
+             margin-left: 10px;
+         }
 
-        .priority-selector select {
-            padding: 8px 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 6px;
-            background: white;
-            cursor: pointer;
-        }
+         .priority-selector select, .category-selector select {
+             padding: 8px 12px;
+             border: 2px solid #e1e5e9;
+             border-radius: 6px;
+             background: white;
+             cursor: pointer;
+             font-size: 0.9rem;
+         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .auth-section, .todo-container {
-                padding: 25px;
-            }
-            
-            .add-todo {
-                flex-direction: column;
-            }
-            
-            .add-todo input {
-                min-width: 100%;
-            }
-            
-            .todo-filters {
-                justify-content: center;
-            }
-            
-            .user-info {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .todo-stats {
-                justify-content: center;
-            }
-        }
+         .category-selector select {
+             min-width: 120px;
+         }
+
+                 @media (max-width: 768px) {
+             .container {
+                 padding: 15px;
+             }
+             
+             .header h1 {
+                 font-size: 2rem;
+             }
+             
+             .category-section, .todo-container {
+                 padding: 25px;
+             }
+             
+             .category-tabs {
+                 grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                 gap: 10px;
+             }
+             
+             .category-tab {
+                 padding: 12px 15px;
+                 font-size: 0.9rem;
+             }
+             
+             .add-todo {
+                 flex-direction: column;
+             }
+             
+             .add-todo input {
+                 min-width: 100%;
+             }
+             
+             .priority-selector, .category-selector {
+                 margin-left: 0;
+                 margin-top: 10px;
+             }
+             
+             .todo-filters {
+                 justify-content: center;
+             }
+             
+             .todo-stats {
+                 justify-content: center;
+             }
+         }
 
         .fade-in {
             animation: fadeIn 0.5s ease-in;
@@ -563,60 +524,38 @@
             <p>Organize your life with beautiful, multi-account todo lists</p>
         </div>
 
-        <!-- Authentication Section -->
-        <div id="auth-section" class="auth-section">
-            <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
-                <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+        <!-- Category Selection Section -->
+        <div class="category-section">
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="switchCategory('all')">
+                    <i class="fas fa-list"></i> All Tasks
+                </button>
+                <button class="category-tab" onclick="switchCategory('doordash')">
+                    <i class="fas fa-utensils"></i> DoorDash
+                </button>
+                <button class="category-tab" onclick="switchCategory('tripadvisor')">
+                    <i class="fas fa-map-marked-alt"></i> TripAdvisor
+                </button>
+                <button class="category-tab" onclick="switchCategory('venmo')">
+                    <i class="fas fa-credit-card"></i> Venmo
+                </button>
+                <button class="category-tab" onclick="switchCategory('peacock')">
+                    <i class="fas fa-play-circle"></i> Peacock
+                </button>
+                <button class="category-tab" onclick="switchCategory('samsung')">
+                    <i class="fas fa-mobile-alt"></i> Samsung
+                </button>
+                <button class="category-tab" onclick="switchCategory('growth')">
+                    <i class="fas fa-chart-line"></i> Growth
+                </button>
+                <button class="category-tab" onclick="switchCategory('personal')">
+                    <i class="fas fa-user"></i> Personal
+                </button>
             </div>
-
-            <form id="login-form" class="auth-form active">
-                <div class="form-group">
-                    <label for="login-email">Email</label>
-                    <input type="email" id="login-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" required>
-                </div>
-                <button type="submit" class="btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-            </form>
-
-            <form id="register-form" class="auth-form">
-                <div class="form-group">
-                    <label for="register-name">Full Name</label>
-                    <input type="text" id="register-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-email">Email</label>
-                    <input type="email" id="register-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="register-password">Password</label>
-                    <input type="password" id="register-password" required>
-                </div>
-                <button type="submit" class="btn">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
         </div>
 
         <!-- App Section -->
-        <div id="app-section" class="app-section">
-            <div class="user-info">
-                <div class="user-welcome">
-                    <div class="user-avatar" id="user-avatar">U</div>
-                    <div>
-                        <h3 id="user-name">Welcome!</h3>
-                        <p id="user-email">user@example.com</p>
-                    </div>
-                </div>
-                <button class="logout-btn" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
+        <div id="app-section" class="app-section active">
 
             <div class="todo-container">
                 <div class="todo-header">
@@ -637,19 +576,30 @@
                     </div>
                 </div>
 
-                <div class="add-todo">
-                    <input type="text" id="new-todo" placeholder="What needs to be done?" maxlength="200">
-                    <div class="priority-selector">
-                        <select id="todo-priority">
-                            <option value="low">Low Priority</option>
-                            <option value="medium" selected>Medium Priority</option>
-                            <option value="high">High Priority</option>
-                        </select>
-                    </div>
-                    <button class="add-btn" onclick="addTodo()">
-                        <i class="fas fa-plus"></i> Add Task
-                    </button>
-                </div>
+                                 <div class="add-todo">
+                     <input type="text" id="new-todo" placeholder="What needs to be done?" maxlength="200">
+                     <div class="priority-selector">
+                         <select id="todo-priority">
+                             <option value="low">Low Priority</option>
+                             <option value="medium" selected>Medium Priority</option>
+                             <option value="high">High Priority</option>
+                         </select>
+                     </div>
+                     <div class="category-selector">
+                         <select id="todo-category">
+                             <option value="personal">Personal</option>
+                             <option value="doordash">DoorDash</option>
+                             <option value="tripadvisor">TripAdvisor</option>
+                             <option value="venmo">Venmo</option>
+                             <option value="peacock">Peacock</option>
+                             <option value="samsung">Samsung</option>
+                             <option value="growth">Growth</option>
+                         </select>
+                     </div>
+                     <button class="add-btn" onclick="addTodo()">
+                         <i class="fas fa-plus"></i> Add Task
+                     </button>
+                 </div>
 
                 <div class="todo-filters">
                     <button class="filter-btn active" onclick="filterTodos('all')">All Tasks</button>
@@ -694,17 +644,30 @@
          </div>
      </div>
 
-    <script>
-        // Application State
-        let currentUser = null;
-        let currentFilter = 'all';
-        let editingTodo = null;
+         <script>
+         // Application State
+         let todos = [];
+         let currentCategory = 'all';
+         let currentFilter = 'all';
 
-                 // Initialize the application
+         // Categories configuration
+         const categories = {
+             all: { name: 'All Tasks', icon: 'fas fa-list' },
+             doordash: { name: 'DoorDash', icon: 'fas fa-utensils' },
+             tripadvisor: { name: 'TripAdvisor', icon: 'fas fa-map-marked-alt' },
+             venmo: { name: 'Venmo', icon: 'fas fa-credit-card' },
+             peacock: { name: 'Peacock', icon: 'fas fa-play-circle' },
+             samsung: { name: 'Samsung', icon: 'fas fa-mobile-alt' },
+             growth: { name: 'Growth', icon: 'fas fa-chart-line' },
+             personal: { name: 'Personal', icon: 'fas fa-user' }
+         };
+
+         // Initialize the application
          document.addEventListener('DOMContentLoaded', function() {
-             checkAuthState();
+             loadTodosFromStorage();
              setupEventListeners();
              initializeBraze();
+             loadTodos();
          });
 
          function initializeBraze() {
@@ -716,180 +679,85 @@
              });
 
              braze.toggleLogging();
-             
-             // Set initial user if logged in
-             if (currentUser) {
-                 braze.changeUser(currentUser.email);
-                 updateBrazeUserProfile();
-             } else {
-                 braze.changeUser('anonymous_user');
-             }
+             braze.changeUser('taskflow_user');
              
              braze.openSession(() => {
                  braze.requestContentCardsRefresh();
                  braze.showContentCards(document.getElementById("braze-feed"));
              });
+
+             // Set user attributes
+             const user = braze.getUser();
+             user.setCustomUserAttribute('app_name', 'TaskFlow');
+             user.setCustomUserAttribute('total_todos', todos.length);
+             updateBrazeStats();
          }
 
-        function setupEventListeners() {
-            // Auth form submissions
-            document.getElementById('login-form').addEventListener('submit', handleLogin);
-            document.getElementById('register-form').addEventListener('submit', handleRegister);
-            
-            // Add todo on Enter key
-            document.getElementById('new-todo').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    addTodo();
-                }
-            });
-        }
+         function setupEventListeners() {
+             // Add todo on Enter key
+             document.getElementById('new-todo').addEventListener('keypress', function(e) {
+                 if (e.key === 'Enter') {
+                     addTodo();
+                 }
+             });
+         }
 
-        function checkAuthState() {
-            const savedUser = localStorage.getItem('taskflow_user');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                showApp();
-            } else {
-                showAuth();
-            }
-        }
-
-        function switchAuthTab(tab) {
-            // Update tab buttons
-            document.querySelectorAll('.auth-tab').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[onclick="switchAuthTab('${tab}')"]`).classList.add('active');
-            
-            // Update forms
-            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-            document.getElementById(`${tab}-form`).classList.add('active');
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            // Get stored users
-            const users = JSON.parse(localStorage.getItem('taskflow_users') || '{}');
-            
-                         if (users[email] && users[email].password === password) {
-                 currentUser = users[email];
-                 localStorage.setItem('taskflow_user', JSON.stringify(currentUser));
-                 
-                 // Update Braze user
-                 braze.changeUser(currentUser.email);
-                 updateBrazeUserProfile();
-                 braze.logCustomEvent('User Login', { 
-                     'login_method': 'email',
-                     'user_name': currentUser.name 
-                 });
-                 
-                 showApp();
-                 showNotification('Welcome back!', 'success');
-             } else {
-                 showNotification('Invalid email or password', 'error');
-                 braze.logCustomEvent('Login Failed', { 'email': email });
+         function loadTodosFromStorage() {
+             const savedTodos = localStorage.getItem('taskflow_todos');
+             if (savedTodos) {
+                 todos = JSON.parse(savedTodos);
              }
-        }
-
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            
-            // Get stored users
-            const users = JSON.parse(localStorage.getItem('taskflow_users') || '{}');
-            
-            if (users[email]) {
-                showNotification('Email already registered', 'error');
-                return;
-            }
-            
-            // Create new user
-            const newUser = {
-                name: name,
-                email: email,
-                password: password,
-                todos: [],
-                createdAt: new Date().toISOString()
-            };
-            
-            users[email] = newUser;
-            localStorage.setItem('taskflow_users', JSON.stringify(users));
-            
-                         currentUser = newUser;
-             localStorage.setItem('taskflow_user', JSON.stringify(currentUser));
-             
-             // Update Braze user
-             braze.changeUser(currentUser.email);
-             updateBrazeUserProfile();
-             braze.logCustomEvent('User Registration', { 
-                 'registration_method': 'email',
-                 'user_name': currentUser.name 
-             });
-             
-             showApp();
-             showNotification('Account created successfully!', 'success');
-        }
-
-                 function logout() {
-             braze.logCustomEvent('User Logout', { 
-                 'user_name': currentUser ? currentUser.name : 'unknown' 
-             });
-             
-             localStorage.removeItem('taskflow_user');
-             currentUser = null;
-             braze.changeUser('anonymous_user');
-             showAuth();
-             showNotification('Logged out successfully', 'success');
          }
 
-        function showAuth() {
-            document.getElementById('auth-section').classList.add('active');
-            document.getElementById('app-section').classList.remove('active');
-            
-            // Clear forms
-            document.querySelectorAll('input').forEach(input => input.value = '');
-        }
+         function switchCategory(category) {
+             currentCategory = category;
+             
+             // Update category buttons
+             document.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active'));
+             document.querySelector(`[onclick="switchCategory('${category}')"]`).classList.add('active');
+             
+             // Update todo category selector to match current category
+             if (category !== 'all') {
+                 document.getElementById('todo-category').value = category;
+             }
+             
+             // Track with Braze
+             braze.logCustomEvent('Category Switched', {
+                 'category': category,
+                 'category_name': categories[category].name
+             });
+             
+             loadTodos();
+         }
 
-        function showApp() {
-            document.getElementById('auth-section').classList.remove('active');
-            document.getElementById('app-section').classList.add('active');
-            
-            // Update user info
-            document.getElementById('user-name').textContent = `Welcome, ${currentUser.name}!`;
-            document.getElementById('user-email').textContent = currentUser.email;
-            document.getElementById('user-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
-            
-            loadTodos();
-        }
-
-        function addTodo() {
-            const todoText = document.getElementById('new-todo').value.trim();
-            const priority = document.getElementById('todo-priority').value;
-            
-            if (!todoText) {
-                showNotification('Please enter a task', 'error');
-                return;
-            }
-            
-            const newTodo = {
-                id: Date.now().toString(),
-                text: todoText,
-                completed: false,
-                priority: priority,
-                createdAt: new Date().toISOString()
-            };
-            
-                         currentUser.todos.push(newTodo);
-             saveUserData();
+                 function addTodo() {
+             const todoText = document.getElementById('new-todo').value.trim();
+             const priority = document.getElementById('todo-priority').value;
+             const category = document.getElementById('todo-category').value;
+             
+             if (!todoText) {
+                 showNotification('Please enter a task', 'error');
+                 return;
+             }
+             
+             const newTodo = {
+                 id: Date.now().toString(),
+                 text: todoText,
+                 completed: false,
+                 priority: priority,
+                 category: category,
+                 createdAt: new Date().toISOString()
+             };
+             
+             todos.push(newTodo);
+             saveTodos();
              
              // Track with Braze
              braze.logCustomEvent('Todo Added', {
                  'priority': priority,
-                 'todo_count': currentUser.todos.length,
-                 'user_name': currentUser.name
+                 'category': category,
+                 'category_name': categories[category].name,
+                 'todo_count': todos.length
              });
              
              document.getElementById('new-todo').value = '';
@@ -897,19 +765,20 @@
              
              loadTodos();
              showNotification('Task added successfully!', 'success');
-        }
+         }
 
-        function toggleTodo(id) {
-                         const todo = currentUser.todos.find(t => t.id === id);
+                 function toggleTodo(id) {
+             const todo = todos.find(t => t.id === id);
              if (todo) {
                  todo.completed = !todo.completed;
-                 saveUserData();
+                 saveTodos();
                  
                  // Track with Braze
                  braze.logCustomEvent('Todo Toggled', {
                      'completed': todo.completed,
                      'priority': todo.priority,
-                     'user_name': currentUser.name
+                     'category': todo.category,
+                     'category_name': categories[todo.category].name
                  });
                  
                  loadTodos();
@@ -917,19 +786,20 @@
                  const message = todo.completed ? 'Task completed!' : 'Task marked as pending';
                  showNotification(message, 'success');
              }
-        }
+         }
 
                  function deleteTodo(id) {
              if (confirm('Are you sure you want to delete this task?')) {
-                 const todoToDelete = currentUser.todos.find(t => t.id === id);
-                 currentUser.todos = currentUser.todos.filter(t => t.id !== id);
-                 saveUserData();
+                 const todoToDelete = todos.find(t => t.id === id);
+                 todos = todos.filter(t => t.id !== id);
+                 saveTodos();
                  
                  // Track with Braze
                  braze.logCustomEvent('Todo Deleted', {
                      'priority': todoToDelete ? todoToDelete.priority : 'unknown',
-                     'was_completed': todoToDelete ? todoToDelete.completed : false,
-                     'user_name': currentUser.name
+                     'category': todoToDelete ? todoToDelete.category : 'unknown',
+                     'category_name': todoToDelete ? categories[todoToDelete.category].name : 'unknown',
+                     'was_completed': todoToDelete ? todoToDelete.completed : false
                  });
                  
                  loadTodos();
@@ -938,19 +808,20 @@
          }
 
                  function editTodo(id) {
-             const todo = currentUser.todos.find(t => t.id === id);
+             const todo = todos.find(t => t.id === id);
              if (todo) {
                  const newText = prompt('Edit task:', todo.text);
                  if (newText && newText.trim()) {
                      const oldText = todo.text;
                      todo.text = newText.trim();
-                     saveUserData();
+                     saveTodos();
                      
                      // Track with Braze
                      braze.logCustomEvent('Todo Edited', {
                          'priority': todo.priority,
-                         'text_changed': oldText !== newText.trim(),
-                         'user_name': currentUser.name
+                         'category': todo.category,
+                         'category_name': categories[todo.category].name,
+                         'text_changed': oldText !== newText.trim()
                      });
                      
                      loadTodos();
@@ -965,7 +836,7 @@
              // Track with Braze
              braze.logCustomEvent('Filter Applied', {
                  'filter_type': filter,
-                 'user_name': currentUser.name
+                 'current_category': currentCategory
              });
              
              // Update filter buttons
@@ -975,83 +846,104 @@
              loadTodos();
          }
 
-        function loadTodos() {
-            const todoList = document.getElementById('todo-list');
-            let todos = currentUser.todos || [];
-            
-            // Apply filter
-            switch (currentFilter) {
-                case 'pending':
-                    todos = todos.filter(t => !t.completed);
-                    break;
-                case 'completed':
-                    todos = todos.filter(t => t.completed);
-                    break;
-                case 'high':
-                    todos = todos.filter(t => t.priority === 'high');
-                    break;
-            }
-            
-            // Sort by priority and creation date
-            todos.sort((a, b) => {
-                const priorityOrder = { high: 3, medium: 2, low: 1 };
-                if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
-                    return priorityOrder[b.priority] - priorityOrder[a.priority];
-                }
-                return new Date(b.createdAt) - new Date(a.createdAt);
-            });
-            
-            if (todos.length === 0) {
-                todoList.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-clipboard-check"></i>
-                        <h3>No tasks found</h3>
-                        <p>${currentFilter === 'all' ? 'Add your first task above to get started!' : `No ${currentFilter} tasks found.`}</p>
-                    </div>
-                `;
-            } else {
-                todoList.innerHTML = todos.map(todo => `
-                    <div class="todo-item ${todo.completed ? 'completed' : ''} priority-${todo.priority} fade-in">
-                        <div class="todo-checkbox ${todo.completed ? 'checked' : ''}" onclick="toggleTodo('${todo.id}')">
-                            ${todo.completed ? '<i class="fas fa-check"></i>' : ''}
-                        </div>
-                        <div class="todo-text">${escapeHtml(todo.text)}</div>
-                        <div class="todo-actions">
-                            <button class="action-btn edit-btn" onclick="editTodo('${todo.id}')" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete-btn" onclick="deleteTodo('${todo.id}')" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            updateStats();
-        }
-
-        function updateStats() {
-            const allTodos = currentUser.todos || [];
-            const completed = allTodos.filter(t => t.completed).length;
-            const pending = allTodos.length - completed;
-            
-            document.getElementById('total-tasks').textContent = allTodos.length;
-            document.getElementById('completed-tasks').textContent = completed;
-            document.getElementById('pending-tasks').textContent = pending;
-        }
-
-                 function saveUserData() {
-             // Update user in localStorage
-             localStorage.setItem('taskflow_user', JSON.stringify(currentUser));
+                 function loadTodos() {
+             const todoList = document.getElementById('todo-list');
+             let filteredTodos = [...todos];
              
-             // Update user in users collection
-             const users = JSON.parse(localStorage.getItem('taskflow_users') || '{}');
-             users[currentUser.email] = currentUser;
-             localStorage.setItem('taskflow_users', JSON.stringify(users));
+             // Apply category filter
+             if (currentCategory !== 'all') {
+                 filteredTodos = filteredTodos.filter(t => t.category === currentCategory);
+             }
              
-             // Update Braze user profile with latest data
-             updateBrazeUserProfile();
+             // Apply status filter
+             switch (currentFilter) {
+                 case 'pending':
+                     filteredTodos = filteredTodos.filter(t => !t.completed);
+                     break;
+                 case 'completed':
+                     filteredTodos = filteredTodos.filter(t => t.completed);
+                     break;
+                 case 'high':
+                     filteredTodos = filteredTodos.filter(t => t.priority === 'high');
+                     break;
+             }
+             
+             // Sort by priority and creation date
+             filteredTodos.sort((a, b) => {
+                 const priorityOrder = { high: 3, medium: 2, low: 1 };
+                 if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+                     return priorityOrder[b.priority] - priorityOrder[a.priority];
+                 }
+                 return new Date(b.createdAt) - new Date(a.createdAt);
+             });
+             
+             if (filteredTodos.length === 0) {
+                 const categoryName = currentCategory === 'all' ? 'tasks' : `${categories[currentCategory].name} tasks`;
+                 todoList.innerHTML = `
+                     <div class="empty-state">
+                         <i class="fas fa-clipboard-check"></i>
+                         <h3>No ${categoryName} found</h3>
+                         <p>${currentFilter === 'all' ? `Add your first ${categoryName} above to get started!` : `No ${currentFilter} ${categoryName} found.`}</p>
+                     </div>
+                 `;
+             } else {
+                 todoList.innerHTML = filteredTodos.map(todo => `
+                     <div class="todo-item ${todo.completed ? 'completed' : ''} priority-${todo.priority} fade-in">
+                         <div class="todo-checkbox ${todo.completed ? 'checked' : ''}" onclick="toggleTodo('${todo.id}')">
+                             ${todo.completed ? '<i class="fas fa-check"></i>' : ''}
+                         </div>
+                         <div class="todo-text">
+                             <span class="todo-category-badge">${categories[todo.category].name}</span>
+                             ${escapeHtml(todo.text)}
+                         </div>
+                         <div class="todo-actions">
+                             <button class="action-btn edit-btn" onclick="editTodo('${todo.id}')" title="Edit">
+                                 <i class="fas fa-edit"></i>
+                             </button>
+                             <button class="action-btn delete-btn" onclick="deleteTodo('${todo.id}')" title="Delete">
+                                 <i class="fas fa-trash"></i>
+                             </button>
+                         </div>
+                     </div>
+                 `).join('');
+             }
+             
+             updateStats();
+         }
+
+                 function updateStats() {
+             let relevantTodos = todos;
+             if (currentCategory !== 'all') {
+                 relevantTodos = todos.filter(t => t.category === currentCategory);
+             }
+             
+             const completed = relevantTodos.filter(t => t.completed).length;
+             const pending = relevantTodos.length - completed;
+             
+             document.getElementById('total-tasks').textContent = relevantTodos.length;
+             document.getElementById('completed-tasks').textContent = completed;
+             document.getElementById('pending-tasks').textContent = pending;
+         }
+
+         function saveTodos() {
+             localStorage.setItem('taskflow_todos', JSON.stringify(todos));
+             updateBrazeStats();
+         }
+
+         function updateBrazeStats() {
+             const user = braze.getUser();
+             user.setCustomUserAttribute('total_todos', todos.length);
+             user.setCustomUserAttribute('completed_todos', todos.filter(t => t.completed).length);
+             user.setCustomUserAttribute('high_priority_todos', todos.filter(t => t.priority === 'high').length);
+             
+             // Category-specific stats
+             Object.keys(categories).forEach(category => {
+                 if (category !== 'all') {
+                     const categoryTodos = todos.filter(t => t.category === category);
+                     user.setCustomUserAttribute(`${category}_todos`, categoryTodos.length);
+                     user.setCustomUserAttribute(`${category}_completed`, categoryTodos.filter(t => t.completed).length);
+                 }
+             });
          }
 
         function showNotification(message, type = 'info') {
@@ -1095,54 +987,28 @@
             return div.innerHTML;
         }
 
-                 // Add some demo data for first-time users
-         function addDemoData() {
-             if (currentUser && currentUser.todos.length === 0) {
-                 const demoTodos = [
-                     { id: '1', text: 'Welcome to TaskFlow! 🎉', completed: false, priority: 'high', createdAt: new Date().toISOString() },
-                     { id: '2', text: 'Try adding your own tasks', completed: false, priority: 'medium', createdAt: new Date().toISOString() },
-                     { id: '3', text: 'Click the checkbox to complete tasks', completed: true, priority: 'low', createdAt: new Date().toISOString() }
-                 ];
-                 
-                 currentUser.todos = demoTodos;
-                 saveUserData();
-                 loadTodos();
-             }
-         }
-
-         // Braze helper functions
-         function updateBrazeUserProfile() {
-             if (currentUser) {
-                 const user = braze.getUser();
-                 user.setFirstName(currentUser.name.split(' ')[0]);
-                 user.setLastName(currentUser.name.split(' ').slice(1).join(' ') || '');
-                 user.setEmail(currentUser.email);
-                 user.setCustomUserAttribute('total_todos', currentUser.todos.length);
-                 user.setCustomUserAttribute('completed_todos', currentUser.todos.filter(t => t.completed).length);
-                 user.setCustomUserAttribute('high_priority_todos', currentUser.todos.filter(t => t.priority === 'high').length);
-                 user.setCustomUserAttribute('account_created', currentUser.createdAt);
-                 user.setCustomUserAttribute('last_login', new Date().toISOString());
-             }
-         }
-
+                 // Braze helper functions
          function toggleBrazeCards() {
              braze.toggleContentCards(document.getElementById("braze-feed"));
              braze.logCustomEvent('Content Cards Toggled', { 
-                 'user_name': currentUser ? currentUser.name : 'anonymous' 
+                 'current_category': currentCategory,
+                 'total_todos': todos.length
              });
          }
 
          function hideBrazeCards() {
              braze.hideContentCards();
              braze.logCustomEvent('Content Cards Hidden', { 
-                 'user_name': currentUser ? currentUser.name : 'anonymous' 
+                 'current_category': currentCategory,
+                 'total_todos': todos.length
              });
          }
 
          function showBrazeCards() {
              braze.showContentCards(document.getElementById("braze-feed"));
              braze.logCustomEvent('Content Cards Shown', { 
-                 'user_name': currentUser ? currentUser.name : 'anonymous' 
+                 'current_category': currentCategory,
+                 'total_todos': todos.length
              });
          }
     </script>
