@@ -145,6 +145,21 @@
             color: #666;
         }
 
+        .search-clear-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .search-clear-btn:hover {
+            background: #e5e5e5;
+            color: #333;
+        }
+
         .nav-actions {
             display: flex;
             gap: 15px;
@@ -657,7 +672,10 @@
             <div class="nav-right">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search for books...">
+                    <input type="text" placeholder="Search for books..." id="search-input" onkeyup="searchBooks()">
+                    <button class="search-clear-btn" onclick="clearSearch()" id="search-clear-btn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <div class="nav-actions">
                     <button class="nav-btn" onclick="showCart()">
@@ -843,6 +861,54 @@
                 price: 15.99,
                 category: "sci-fi",
                 image: "🏜️"
+            },
+            {
+                id: 7,
+                title: "Pride and Prejudice",
+                author: "Jane Austen",
+                price: 10.99,
+                category: "fiction",
+                image: "💕"
+            },
+            {
+                id: 8,
+                title: "The Hobbit",
+                author: "J.R.R. Tolkien",
+                price: 13.99,
+                category: "fiction",
+                image: "🐉"
+            },
+            {
+                id: 9,
+                title: "Foundation",
+                author: "Isaac Asimov",
+                price: 12.99,
+                category: "sci-fi",
+                image: "🚀"
+            },
+            {
+                id: 10,
+                title: "Einstein: His Life and Universe",
+                author: "Walter Isaacson",
+                price: 18.99,
+                category: "biography",
+                image: "🧠"
+            },
+            {
+                id: 11,
+                title: "The Power of Habit",
+                author: "Charles Duhigg",
+                price: 15.99,
+                category: "self-help",
+                image: "💪"
+            },
+            {
+                id: 12,
+                title: "Atomic Habits",
+                author: "James Clear",
+                price: 16.99,
+                category: "self-help",
+                image: "⚛️"
             }
         ];
 
@@ -876,22 +942,57 @@
         }
 
         function loadBooks() {
-            const booksGrid = document.getElementById('books-grid');
-            booksGrid.innerHTML = books.map(book => `
-                <div class="book-card" onclick="addToCart(${book.id})">
-                    <div class="book-image">
-                        <span>${book.image}</span>
-                    </div>
-                    <div class="book-info">
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">by ${book.author}</div>
-                        <div class="book-price">$${book.price}</div>
-                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${book.id})">
-                            ADD TO CART
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+            displayBooks(books);
+        }
+
+        function searchBooks() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('search-clear-btn');
+            
+            // Show/hide clear button
+            if (searchTerm.length > 0) {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+            
+            // Track search with Braze
+            if (searchTerm.length > 0) {
+                braze.logCustomEvent('Book Search', {
+                    'search_term': searchTerm,
+                    'total_books': books.length
+                });
+            }
+            
+            let filteredBooks;
+            if (searchTerm === '') {
+                // If search is empty, show all books or current category
+                if (currentCategory === 'all') {
+                    filteredBooks = books;
+                } else {
+                    filteredBooks = books.filter(book => book.category === currentCategory);
+                }
+            } else {
+                // Filter books by search term (title, author, or category)
+                filteredBooks = books.filter(book => 
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.category.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayBooks(filteredBooks);
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('search-clear-btn').style.display = 'none';
+            searchBooks(); // This will reset to show all books or current category
+            
+            // Track with Braze
+            braze.logCustomEvent('Search Cleared', {
+                'current_category': currentCategory
+            });
         }
 
         function filterByCategory(category) {
@@ -902,12 +1003,30 @@
                 'category': category
             });
             
+            // Clear search input when filtering by category
+            document.getElementById('search-input').value = '';
+            
             if (category === 'all') {
                 loadBooks();
             } else {
                 const filteredBooks = books.filter(book => book.category === category);
-                const booksGrid = document.getElementById('books-grid');
-                booksGrid.innerHTML = filteredBooks.map(book => `
+                displayBooks(filteredBooks);
+            }
+        }
+
+        function displayBooks(booksToDisplay) {
+            const booksGrid = document.getElementById('books-grid');
+            
+            if (booksToDisplay.length === 0) {
+                booksGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h3>No books found</h3>
+                        <p>Try adjusting your search terms or browse our categories</p>
+                    </div>
+                `;
+            } else {
+                booksGrid.innerHTML = booksToDisplay.map(book => `
                     <div class="book-card" onclick="addToCart(${book.id})">
                         <div class="book-image">
                             <span>${book.image}</span>
