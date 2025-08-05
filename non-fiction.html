@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookFlow - Premium Book Store</title>
+    <title>Non-Fiction Books - BookFlow</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -178,166 +178,30 @@
             font-weight: 600;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Page Header */
+        .page-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 100px 0;
-            display: flex;
-            align-items: center;
-            min-height: 600px;
+            padding: 80px 0;
+            text-align: center;
         }
 
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
+        .page-header h1 {
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 20px;
-            line-height: 1.1;
         }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+        .page-header p {
+            font-size: 1.2rem;
             opacity: 0.9;
-            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .cta-btn {
-            background: #ff6b35;
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .book-stack {
-            position: relative;
-            width: 300px;
-            height: 400px;
-        }
-
-        .book {
-            position: absolute;
-            width: 200px;
-            height: 280px;
-            border-radius: 5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .book-1 {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            transform: rotate(-15deg) translateY(20px);
-        }
-
-        .book-2 {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            transform: rotate(-5deg) translateY(10px);
-        }
-
-        .book-3 {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            transform: rotate(5deg) translateY(0);
-        }
-
-        /* Categories Section */
-        .categories {
-            padding: 100px 0;
-            background: #f8f9fa;
-        }
-
-        .categories h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: #111111;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .category-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .category-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #111111;
-        }
-
-        .category-card p {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Featured Books */
-        .featured {
-            padding: 100px 0;
-        }
-
-        .featured h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: #111111;
+        /* Books Grid */
+        .books-section {
+            padding: 80px 0;
         }
 
         .books-grid {
@@ -529,61 +393,6 @@
             background: #e55a2b;
         }
 
-        /* Braze Section */
-        .braze-section {
-            background: #f8f9fa;
-            padding: 80px 0;
-        }
-
-        .braze-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .braze-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #111111;
-        }
-
-        .braze-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .braze-btn {
-            background: #111111;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .braze-btn:hover {
-            background: #ff6b35;
-        }
-
-        .braze-feed {
-            min-height: 200px;
-        }
-
-        .loading-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-
-        .loading-state i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -599,29 +408,8 @@
                 width: 150px;
             }
 
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
-            }
-
-            .hero-content h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
-            }
-
-            .book-stack {
-                width: 200px;
-                height: 300px;
-            }
-
-            .book {
-                width: 150px;
-                height: 200px;
-            }
-
-            .category-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
             }
 
             .books-grid {
@@ -642,14 +430,16 @@
         <div class="nav-container">
             <div class="nav-left">
                 <div class="logo">
-                    <i class="fas fa-book-open"></i>
-                    <span>BookFlow</span>
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <i class="fas fa-book-open"></i>
+                        <span>BookFlow</span>
+                    </a>
                 </div>
             </div>
             <div class="nav-center">
-                <a href="index.html" class="nav-link active">New & Featured</a>
+                <a href="index.html" class="nav-link">New & Featured</a>
                 <a href="fiction.html" class="nav-link">Fiction</a>
-                <a href="non-fiction.html" class="nav-link">Non-Fiction</a>
+                <a href="non-fiction.html" class="nav-link active">Non-Fiction</a>
                 <a href="sci-fi.html" class="nav-link">Science Fiction</a>
                 <a href="biography.html" class="nav-link">Biography</a>
                 <a href="self-help.html" class="nav-link">Self-Help</a>
@@ -672,67 +462,17 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div>
-                <h1>DISCOVER YOUR NEXT GREAT READ</h1>
-                <p>Explore thousands of books across all genres. Find your perfect story.</p>
-                <button class="cta-btn" onclick="scrollToFeatured()">
-                    SHOP NOW
-                </button>
-            </div>
-            <div class="hero-image">
-                <div class="book-stack">
-                    <div class="book book-1"></div>
-                    <div class="book book-2"></div>
-                    <div class="book book-3"></div>
-                </div>
-            </div>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>NON-FICTION BOOKS</h1>
+            <p>Explore real-world knowledge, insights, and discoveries that expand your understanding of the world around you.</p>
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="categories">
+    <!-- Books Section -->
+    <section class="books-section">
         <div class="container">
-            <h2>Shop by Category</h2>
-            <div class="category-grid">
-                <div class="category-card" onclick="window.location.href='fiction.html'">
-                    <div class="category-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3>Fiction</h3>
-                    <p>Imaginative stories</p>
-                </div>
-                <div class="category-card" onclick="window.location.href='non-fiction.html'">
-                    <div class="category-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Non-Fiction</h3>
-                    <p>Real-world knowledge</p>
-                </div>
-                <div class="category-card" onclick="window.location.href='sci-fi.html'">
-                    <div class="category-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Science Fiction</h3>
-                    <p>Future possibilities</p>
-                </div>
-                <div class="category-card" onclick="window.location.href='biography.html'">
-                    <div class="category-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Biography</h3>
-                    <p>Life stories</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Books -->
-    <section class="featured" id="featured">
-        <div class="container">
-            <h2>Featured Books</h2>
             <div class="books-grid" id="books-grid">
                 <!-- Books will be populated by JavaScript -->
             </div>
@@ -761,73 +501,13 @@
         </div>
     </div>
 
-    <!-- Braze Content Cards Section -->
-    <section class="braze-section">
-        <div class="container">
-            <div class="braze-header">
-                <h2><i class="fas fa-bell"></i> Personalized Recommendations</h2>
-                <div class="braze-controls">
-                    <button class="braze-btn" onclick="toggleBrazeCards()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
-                    <button class="braze-btn" onclick="hideBrazeCards()">
-                        <i class="fas fa-eye-slash"></i> Hide
-                    </button>
-                    <button class="braze-btn" onclick="showBrazeCards()">
-                        <i class="fas fa-eye"></i> Show
-                    </button>
-                </div>
-            </div>
-            <div id="braze-feed" class="braze-feed">
-                <div class="loading-state">
-                    <i class="fas fa-satellite-dish"></i>
-                    <h3>Loading recommendations...</h3>
-                    <p>Finding books just for you</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script>
         // Application State
         let cart = [];
         let books = [];
-        let currentCategory = 'all';
 
-        // Sample book data
-        const sampleBooks = [
-            {
-                id: 1,
-                title: "The Great Gatsby",
-                author: "F. Scott Fitzgerald",
-                price: 12.99,
-                category: "fiction",
-                image: "📚"
-            },
-            {
-                id: 2,
-                title: "To Kill a Mockingbird",
-                author: "Harper Lee",
-                price: 14.99,
-                category: "fiction",
-                image: "📖"
-            },
-            {
-                id: 3,
-                title: "1984",
-                author: "George Orwell",
-                price: 11.99,
-                category: "sci-fi",
-                image: "🔮"
-            },
-            {
-                id: 4,
-                title: "Steve Jobs",
-                author: "Walter Isaacson",
-                price: 16.99,
-                category: "biography",
-                image: "👨‍💼"
-            },
+        // Non-fiction books data
+        const nonFictionBooks = [
             {
                 id: 5,
                 title: "The Art of War",
@@ -837,24 +517,55 @@
                 image: "⚔️"
             },
             {
-                id: 6,
-                title: "Dune",
-                author: "Frank Herbert",
+                id: 11,
+                title: "Sapiens",
+                author: "Yuval Noah Harari",
+                price: 18.99,
+                category: "non-fiction",
+                image: "🧠"
+            },
+            {
+                id: 12,
+                title: "The Power of Habit",
+                author: "Charles Duhigg",
                 price: 15.99,
-                category: "sci-fi",
-                image: "🏜️"
+                category: "non-fiction",
+                image: "🔄"
+            },
+            {
+                id: 13,
+                title: "Atomic Habits",
+                author: "James Clear",
+                price: 16.99,
+                category: "non-fiction",
+                image: "⚛️"
+            },
+            {
+                id: 14,
+                title: "Thinking, Fast and Slow",
+                author: "Daniel Kahneman",
+                price: 17.99,
+                category: "non-fiction",
+                image: "🧭"
+            },
+            {
+                id: 15,
+                title: "The 7 Habits of Highly Effective People",
+                author: "Stephen R. Covey",
+                price: 14.99,
+                category: "non-fiction",
+                image: "📈"
             }
         ];
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            books = sampleBooks;
+            books = nonFictionBooks;
             loadBooks();
             initializeBraze();
         });
 
         function initializeBraze() {
-            // Initialize Braze once the SDK is ready
             braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
                 baseUrl: "sondheim.braze.com",
                 enableLogging: true,
@@ -862,16 +573,16 @@
             });
 
             braze.toggleLogging();
-            braze.changeUser('pjy');
+            braze.changeUser('bookflow_user');
             
             braze.openSession(() => {
                 braze.requestContentCardsRefresh();
-                braze.showContentCards(document.getElementById("braze-feed"));
             });
 
             // Set user attributes
             const user = braze.getUser();
             user.setCustomUserAttribute('app_name', 'BookFlow');
+            user.setCustomUserAttribute('current_page', 'non-fiction');
             user.setCustomUserAttribute('total_books', books.length);
         }
 
@@ -892,37 +603,6 @@
                     </div>
                 </div>
             `).join('');
-        }
-
-        function filterByCategory(category) {
-            currentCategory = category;
-            
-            // Track with Braze
-            braze.logCustomEvent('Category Filtered', {
-                'category': category
-            });
-            
-            if (category === 'all') {
-                loadBooks();
-            } else {
-                const filteredBooks = books.filter(book => book.category === category);
-                const booksGrid = document.getElementById('books-grid');
-                booksGrid.innerHTML = filteredBooks.map(book => `
-                    <div class="book-card" onclick="addToCart(${book.id})">
-                        <div class="book-image">
-                            <span>${book.image}</span>
-                        </div>
-                        <div class="book-info">
-                            <div class="book-title">${book.title}</div>
-                            <div class="book-author">by ${book.author}</div>
-                            <div class="book-price">$${book.price}</div>
-                            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${book.id})">
-                                ADD TO CART
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
         }
 
         function addToCart(bookId) {
@@ -998,40 +678,11 @@
             hideCart();
         }
 
-        function scrollToFeatured() {
-            document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
-        }
-
         function showUserMenu() {
             // Track with Braze
             braze.logCustomEvent('User Menu Opened');
             alert('User menu functionality coming soon!');
         }
-
-        // Braze helper functions
-        function toggleBrazeCards() {
-            braze.toggleContentCards(document.getElementById("braze-feed"));
-            braze.logCustomEvent('Content Cards Toggled', { 
-                'current_category': currentCategory,
-                'total_books': books.length
-            });
-        }
-
-        function hideBrazeCards() {
-            braze.hideContentCards();
-            braze.logCustomEvent('Content Cards Hidden', { 
-                'current_category': currentCategory,
-                'total_books': books.length
-            });
-        }
-
-        function showBrazeCards() {
-            braze.showContentCards(document.getElementById("braze-feed"));
-            braze.logCustomEvent('Content Cards Shown', { 
-                'current_category': currentCategory,
-                'total_books': books.length
-            });
-        }
     </script>
 </body>
-</html>
+</html> 
