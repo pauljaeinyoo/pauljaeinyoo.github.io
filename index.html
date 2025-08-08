@@ -488,6 +488,9 @@
     
     braze.automaticallyShowInAppMessages();
     braze.openSession();
+    
+    // Set user ID for tracking and personalization
+    braze.changeUser("pjy");
 
     // Initialize push notifications using Braze methods
     function initializePushNotifications() {
