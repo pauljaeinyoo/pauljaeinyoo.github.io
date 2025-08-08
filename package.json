@@ -1,0 +1,26 @@
+{
+  "name": "pauljaeinyoo.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pauljaeinyoo/pauljaeinyoo.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pauljaeinyoo/pauljaeinyoo.github.io/issues"
+  },
+  "homepage": "https://github.com/pauljaeinyoo/pauljaeinyoo.github.io#readme",
+  "devDependencies": {
+    "vite": "^7.1.1"
+  }
+}
