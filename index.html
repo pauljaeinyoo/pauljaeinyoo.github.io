@@ -5,24 +5,230 @@
   <title>Book Reviews (Minimal)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; }
-    form { display: flex; gap: .5rem; margin-bottom: 1rem; }
-    .card { display: grid; grid-template-columns: 96px 1fr; gap: 1rem; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; margin-bottom: .75rem; }
-    img { width: 96px; height: 144px; object-fit: cover; background: #f3f3f3; }
-    .meta { font-size: .9rem; color: #555; }
-    textarea { width: 100%; min-height: 72px; }
-    button { cursor: pointer; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+      background: #f7fafc;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    h1 { 
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      color: #718096;
+      margin-bottom: 3rem;
+    }
+    
+    .search-section {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+    
+    form { 
+      display: flex; 
+      gap: 1rem; 
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    input[type="search"] {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+      background: #f8fafc;
+    }
+    
+    input[type="search"]:focus {
+      outline: none;
+      border-color: #4299e1;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+    }
+    
+    button {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 120px;
+    }
+    
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .results-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+    
+    .card { 
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .book-info {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .book-cover {
+      width: 120px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f0f4f7 0%, #e2e8f0 100%);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .book-details h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    
+    .meta { 
+      font-size: 0.95rem; 
+      color: #718096;
+      margin-bottom: 0.25rem;
+    }
+    
+    .review-section {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.5rem;
+    }
+    
+    .review-label {
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    
+    textarea { 
+      width: 100%; 
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.5;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+      background: #f8fafc;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: #4299e1;
+      background: white;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    .btn-secondary:hover {
+      background: #cbd5e0;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .save-indicator {
+      font-size: 0.85rem;
+      color: #38a169;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: #718096;
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      h1 { font-size: 2rem; }
+      .book-info { grid-template-columns: 100px 1fr; gap: 1rem; }
+      .book-cover { width: 100px; height: 150px; }
+      form { flex-direction: column; }
+      .results-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <h1>Book Reviews</h1>
+  <div class="container">
+    <h1>Book Reviews</h1>
+    <p class="subtitle">Discover, review, and share your thoughts on books</p>
 
-  <form id="searchForm">
-    <input id="q" type="search" placeholder="Search books..." aria-label="Search books" />
-    <button type="submit">Search</button>
-  </form>
+    <div class="search-section">
+      <form id="searchForm">
+        <input id="q" type="search" placeholder="Search for books..." aria-label="Search books" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
-  <div id="results"></div>
+    <div id="results"></div>
+  </div>
 
   <script>
     const API_KEY = ""; // Optional: add your Google Books API key
@@ -38,7 +244,7 @@
     });
 
     async function searchBooks(q) {
-      resultsEl.textContent = "Searching...";
+      resultsEl.innerHTML = '<div class="loading">Searching for books...</div>';
       try {
         const url = new URL("https://www.googleapis.com/books/v1/volumes");
         url.searchParams.set("q", q);
@@ -56,10 +262,13 @@
 
     function renderResults(items) {
       if (!items.length) {
-        resultsEl.textContent = "No results.";
+        resultsEl.innerHTML = '<div class="loading">No results found. Try a different search term.</div>';
         return;
       }
-      resultsEl.innerHTML = "";
+      
+      resultsEl.innerHTML = '<div class="results-grid"></div>';
+      const grid = resultsEl.querySelector('.results-grid');
+      
       for (const item of items) {
         const v = item.volumeInfo || {};
         const id = item.id;
@@ -69,22 +278,23 @@
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="${(v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || ""}" alt="" />
-          <div>
-            <div><strong>${v.title || "Untitled"}</strong></div>
-            <div class="meta">${(v.authors || []).join(", ") || "Unknown author"}</div>
-            <div class="meta">${v.publishedDate || ""}</div>
-            <div style="margin-top:.5rem;">
-              <label>
-                <div>Your review:</div>
-                <textarea>${saved.text || ""}</textarea>
-              </label>
-              <div style="margin-top:.5rem; display:flex; gap:.5rem;">
-                <button data-action="save">Save</button>
-                <button data-action="clear" type="button">Clear</button>
-              </div>
-              <div class="meta" style="margin-top:.25rem;">Saved locally in your browser</div>
+          <div class="book-info">
+            <img class="book-cover" src="${(v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || ""}" alt="" />
+            <div class="book-details">
+              <h3>${v.title || "Untitled"}</h3>
+              <div class="meta">By ${(v.authors || []).join(", ") || "Unknown author"}</div>
+              <div class="meta">Published ${v.publishedDate || "Unknown"}</div>
+              ${v.pageCount ? `<div class="meta">${v.pageCount} pages</div>` : ''}
             </div>
+          </div>
+          <div class="review-section">
+            <label class="review-label">Your Review</label>
+            <textarea placeholder="Share your thoughts about this book...">${saved.text || ""}</textarea>
+            <div class="button-group">
+              <button data-action="save">Save Review</button>
+              <button data-action="clear" class="btn-secondary">Clear</button>
+            </div>
+            <div class="save-indicator" style="opacity: 0;">Saved locally in your browser</div>
           </div>
         `;
 
@@ -104,7 +314,7 @@
           localStorage.removeItem(reviewKey);
         });
 
-        resultsEl.appendChild(card);
+        grid.appendChild(card);
       }
     }
   </script>
