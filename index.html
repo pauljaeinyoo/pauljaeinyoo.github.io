@@ -68,6 +68,23 @@
     .nav-link:hover {
       color: #2d3748;
     }
+
+    .nav-link.active {
+      color: #667eea;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 1px;
+    }
     
     .nav-auth {
       display: flex;
@@ -499,7 +516,9 @@
       .book-cover { width: 100px; height: 150px; }
       form { flex-direction: column; }
       .results-grid { grid-template-columns: 1fr; }
-      .trending-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .genre-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .genre-tabs { flex-direction: column; gap: 0.5rem; }
+      .genre-tab { padding: 0.5rem 1rem; }
       .trending-cover { width: 100px; height: 150px; }
       .push-prompt {
         bottom: 10px;
@@ -507,6 +526,54 @@
         left: 10px;
         max-width: none;
       }
+    }
+
+    /* Genre Content Styling */
+    .genre-content-section {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+
+    .genre-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+
+    .genre-grid.active {
+      display: grid;
+    }
+
+    .genre-book {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    .genre-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    /* Hide search and results when showing genre content */
+    .search-section.hidden,
+    #results.hidden,
+    .trending-section.hidden {
+      display: none;
     }
   </style>
 </head>
@@ -517,9 +584,9 @@
       <a href="#" class="nav-logo">📚 Book Reviews</a>
       
       <div class="nav-menu">
-        <a href="#" class="nav-link">Discover</a>
-        <a href="#" class="nav-link">Trending</a>
-        <a href="#" class="nav-link">Reviews</a>
+        <a href="#" class="nav-link active" data-section="discover">Discover</a>
+        <a href="#" class="nav-link" data-section="fantasy">Fantasy</a>
+        <a href="#" class="nav-link" data-section="scifi">Sci-Fi</a>
       </div>
       
       <div class="nav-auth">
@@ -558,13 +625,22 @@
 
   <div id="results"></div>
 
-    <!-- Add Trending Section -->
-    <div class="trending-section">
+    <!-- Trending Section for Discover -->
+    <div id="trending-section" class="trending-section" style="display: none;">
       <h2>Trending on Book Reviews</h2>
       <p class="trending-subtitle">Most popular books this month</p>
       <div id="trending-books" class="trending-grid">
         <div class="loading">Loading trending books...</div>
       </div>
+    </div>
+
+    <!-- Genre Content Grids -->
+    <div id="fantasy-books" class="genre-grid active">
+      <div class="loading">Loading Fantasy books...</div>
+    </div>
+    
+    <div id="scifi-books" class="genre-grid">
+      <div class="loading">Loading Sci-Fi books...</div>
     </div>
   </div>
 
@@ -898,7 +974,30 @@
              '☆'.repeat(emptyStars);
     }
 
-    // Curated trending books (you can update this list)
+    // Genre-specific book lists
+    const FANTASY_BOOKS = [
+      { query: "The Name of the Wind Patrick Rothfuss", mockReads: "2.3k" },
+      { query: "The Way of Kings Brandon Sanderson", mockReads: "2.1k" },
+      { query: "The Hobbit J.R.R. Tolkien", mockReads: "1.9k" },
+      { query: "Harry Potter and the Sorcerer's Stone", mockReads: "1.8k" },
+      { query: "The Final Empire Brandon Sanderson", mockReads: "1.6k" },
+      { query: "The Eye of the World Robert Jordan", mockReads: "1.4k" },
+      { query: "The Lies of Locke Lamora Scott Lynch", mockReads: "1.2k" },
+      { query: "The Blade Itself Joe Abercrombie", mockReads: "1.1k" }
+    ];
+
+    const SCIFI_BOOKS = [
+      { query: "Dune Frank Herbert", mockReads: "2.5k" },
+      { query: "Project Hail Mary Andy Weir", mockReads: "2.2k" },
+      { query: "The Martian Andy Weir", mockReads: "2.0k" },
+      { query: "Foundation Isaac Asimov", mockReads: "1.8k" },
+      { query: "Ender's Game Orson Scott Card", mockReads: "1.7k" },
+      { query: "The Hitchhiker's Guide to the Galaxy", mockReads: "1.5k" },
+      { query: "Neuromancer William Gibson", mockReads: "1.3k" },
+      { query: "The Left Hand of Darkness Ursula K. Le Guin", mockReads: "1.1k" }
+    ];
+
+    // Trending books data (restored)
     const TRENDING_BOOKS = [
       { query: "Project Hail Mary Andy Weir", mockReads: "2.1k" },
       { query: "Dune Frank Herbert", mockReads: "1.8k" },
@@ -910,8 +1009,119 @@
       { query: "Where the Crawdads Sing", mockReads: "950" }
     ];
 
-    // Load trending books on page load
-    document.addEventListener('DOMContentLoaded', loadTrendingBooks);
+    // Load content on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadGenreBooks('fantasy');
+      loadGenreBooks('scifi');
+      loadTrendingBooks();
+      initializeNavTabs();
+      
+      // Set initial state to Discover
+      document.getElementById('trending-section').style.display = 'block';
+      document.querySelectorAll('.genre-grid').forEach(grid => {
+        grid.classList.remove('active');
+      });
+    });
+
+    // Initialize navigation tab functionality
+    function initializeNavTabs() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const searchSection = document.querySelector('.search-section');
+      const resultsSection = document.getElementById('results');
+      const trendingSection = document.getElementById('trending-section');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const section = link.dataset.section;
+          
+          // Update active nav link
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          
+          if (section === 'discover') {
+            // Show search, results, and trending section, hide genre grids
+            searchSection.classList.remove('hidden');
+            resultsSection.classList.remove('hidden');
+            trendingSection.style.display = 'block';
+            document.querySelectorAll('.genre-grid').forEach(grid => {
+              grid.classList.remove('active');
+            });
+            
+            // Track discover tab click
+            braze.logCustomEvent('nav_discover_clicked', {
+              timestamp: new Date().toISOString()
+            });
+          } else if (section === 'fantasy' || section === 'scifi') {
+            // Hide search, results, and trending, show selected genre
+            searchSection.classList.add('hidden');
+            resultsSection.classList.add('hidden');
+            trendingSection.style.display = 'none';
+            
+            // Update active genre content
+            document.querySelectorAll('.genre-grid').forEach(grid => {
+              grid.classList.remove('active');
+            });
+            document.getElementById(`${section}-books`).classList.add('active');
+            
+            // Track genre tab click
+            braze.logCustomEvent('nav_genre_clicked', {
+              genre: section,
+              timestamp: new Date().toISOString()
+            });
+          }
+        });
+      });
+    }
+
+    async function loadGenreBooks(genre) {
+      const genreEl = document.getElementById(`${genre}-books`);
+      const bookList = genre === 'fantasy' ? FANTASY_BOOKS : SCIFI_BOOKS;
+      
+      genreEl.innerHTML = `<div class="loading">Loading ${genre} books...</div>`;
+      
+      try {
+        const genreBooks = [];
+        
+        // Fetch details for each genre book
+        for (let i = 0; i < bookList.length; i++) {
+          const book = bookList[i];
+          const bookData = await searchSingleBook(book.query);
+          if (bookData) {
+            genreBooks.push({
+              ...bookData,
+              rank: i + 1,
+              mockReads: book.mockReads,
+              genre: genre
+            });
+          }
+        }
+        
+        renderGenreBooks(genreBooks, genre);
+      } catch (error) {
+        genreEl.innerHTML = `<div class="loading">Unable to load ${genre} books.</div>`;
+      }
+    }
+
+    async function searchSingleBook(query) {
+      try {
+        const url = new URL("https://www.googleapis.com/books/v1/volumes");
+        url.searchParams.set("q", query);
+        url.searchParams.set("maxResults", "1");
+        url.searchParams.set("printType", "books");
+        if (API_KEY) url.searchParams.set("key", API_KEY);
+
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        if (data.items && data.items[0]) {
+          return data.items[0];
+        }
+        return null;
+      } catch (error) {
+        return null;
+      }
+    }
 
     async function loadTrendingBooks() {
       const trendingEl = document.getElementById('trending-books');
@@ -936,26 +1146,6 @@
         renderTrendingBooks(trendingBooks);
       } catch (error) {
         trendingEl.innerHTML = '<div class="loading">Unable to load trending books.</div>';
-      }
-    }
-
-    async function searchSingleBook(query) {
-      try {
-        const url = new URL("https://www.googleapis.com/books/v1/volumes");
-        url.searchParams.set("q", query);
-        url.searchParams.set("maxResults", "1");
-        url.searchParams.set("printType", "books");
-        if (API_KEY) url.searchParams.set("key", API_KEY);
-
-        const res = await fetch(url);
-        const data = await res.json();
-        
-        if (data.items && data.items[0]) {
-          return data.items[0];
-        }
-        return null;
-      } catch (error) {
-        return null;
       }
     }
 
@@ -996,6 +1186,47 @@
         });
         
         trendingEl.appendChild(trendingBook);
+      });
+    }
+
+    function renderGenreBooks(books, genre) {
+      const genreEl = document.getElementById(`${genre}-books`);
+      
+      if (!books.length) {
+        genreEl.innerHTML = `<div class="loading">No ${genre} books available.</div>`;
+        return;
+      }
+      
+      genreEl.innerHTML = '';
+      
+      books.forEach(book => {
+        const v = book.volumeInfo || {};
+        const genreBook = document.createElement('div');
+        genreBook.className = 'genre-book';
+        genreBook.innerHTML = `
+          <div class="trending-rank">${book.rank}</div>
+          <img class="trending-cover" src="${(v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || ""}" alt="" />
+          <div class="trending-title">${v.title || "Untitled"}</div>
+          <div class="trending-author">${(v.authors || []).join(", ") || "Unknown author"}</div>
+          <div class="trending-stats">${book.mockReads} reads</div>
+        `;
+        
+        // Click to search for this book
+        genreBook.addEventListener('click', () => {
+          document.getElementById('q').value = v.title || '';
+          searchBooks(v.title || '');
+          document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+          
+          // Track genre book click in Braze
+          braze.logCustomEvent('genre_book_clicked', {
+            book_title: v.title,
+            book_rank: book.rank,
+            book_author: (v.authors || []).join(", "),
+            genre: book.genre
+          });
+        });
+        
+        genreEl.appendChild(genreBook);
       });
     }
 
