@@ -8,6 +8,9 @@
   <!-- Add Braze CDN -->
   <script src="https://js.appboycdn.com/web-sdk/4.8/braze.min.js"></script>
   
+  <!-- Add Google OAuth -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
   <style>
     * {
       margin: 0;
@@ -21,6 +24,128 @@
       color: #2d3748;
       background: #f7fafc;
       min-height: 100vh;
+    }
+    
+    /* Top Navigation Bar - Braze Style */
+    .top-nav {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a202c;
+      text-decoration: none;
+    }
+    
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: #4a5568;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    .nav-link:hover {
+      color: #2d3748;
+    }
+    
+    .nav-auth {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .login-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .login-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    }
+    
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #e2e8f0;
+      margin-right: 8px;
+      object-fit: cover;
+    }
+    
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .user-name {
+      font-weight: 500;
+      color: #2d3748;
+      margin-right: 12px;
+    }
+    
+    .logout-btn {
+      padding: 6px 12px;
+      background: #f7fafc;
+      color: #4a5568;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .logout-btn:hover {
+      background: #edf2f7;
+      border-color: #cbd5e0;
+    }
+    
+    /* Hidden Google Sign-In */
+    .hidden-google-signin {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
     }
     
     .container {
@@ -422,6 +547,8 @@
     }
     
     @media (max-width: 768px) {
+      .nav-container { padding: 1rem; }
+      .nav-menu { display: none; }
       .container { padding: 1rem; }
       h1 { font-size: 2rem; }
       .book-info { grid-template-columns: 100px 1fr; gap: 1rem; }
@@ -440,18 +567,55 @@
   </style>
 </head>
 <body>
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">📚 Book Reviews</a>
+      
+      <div class="nav-menu">
+        <a href="#" class="nav-link">Discover</a>
+        <a href="#" class="nav-link">Trending</a>
+        <a href="#" class="nav-link">Reviews</a>
+      </div>
+      
+      <div class="nav-auth">
+        <!-- Login Button (shows when not authenticated) -->
+        <button id="loginBtn" class="login-btn" onclick="initiateGoogleLogin()" style="display: block;">
+          Login
+        </button>
+        
+        <!-- User Profile (shows when authenticated) -->
+        <div id="userProfile" class="user-profile" style="display: none;">
+          <img id="userAvatar" class="user-avatar" src="" alt="User">
+          <span id="userName" class="user-name"></span>
+          <button class="logout-btn" onclick="signOut()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hidden Google Sign-In Component -->
+  <div class="hidden-google-signin">
+    <div id="g_id_onload"
+         data-client_id="1000882453836-vfvunrrqg3576029frshls83ohf6rb3r.apps.googleusercontent.com"
+         data-callback="handleGoogleSignIn"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"></div>
+  </div>
+
   <div class="container">
-    <h1>Book Reviews</h1>
+  <h1>Book Reviews</h1>
     <p class="subtitle">Discover, review, and share your thoughts on books</p>
 
     <div class="search-section">
-      <form id="searchForm">
+  <form id="searchForm">
         <input id="q" type="search" placeholder="Search for books..." aria-label="Search books" />
-        <button type="submit">Search</button>
-      </form>
+    <button type="submit">Search</button>
+  </form>
     </div>
 
-    <div id="results"></div>
+  <div id="results"></div>
 
     <!-- Add Trending Section -->
     <div class="trending-section">
@@ -476,6 +640,99 @@
   </div>
 
   <script>
+    // Google OAuth Integration
+    function initiateGoogleLogin() {
+      // Trigger Google Sign-In programmatically
+      google.accounts.id.prompt();
+    }
+
+    // Google OAuth callback function
+    function handleGoogleSignIn(response) {
+      // Decode the JWT token to get user info
+      const userInfo = parseJwt(response.credential);
+      
+      console.log('Google Sign-In successful:', userInfo);
+      
+      // Update Braze user profile with Google data
+      updateBrazeUserFromGoogle(userInfo);
+    }
+
+    // Parse JWT token
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    }
+
+    // Update Braze user profile with Google OAuth data (simplified)
+    function updateBrazeUserFromGoogle(userInfo) {
+      // Keep "pjy" as external_id - don't change it
+      // braze.changeUser("pjy"); // Already set during initialization
+      
+      // Get current Braze user
+      const user = braze.getUser();
+      
+      // Set only email, first name, and last name
+      if (userInfo.email) {
+        user.setEmail(userInfo.email);
+        console.log('Email set in Braze:', userInfo.email);
+      }
+      
+      if (userInfo.given_name) {
+        user.setFirstName(userInfo.given_name);
+        console.log('First name set in Braze:', userInfo.given_name);
+      }
+      
+      if (userInfo.family_name) {
+        user.setLastName(userInfo.family_name);
+        console.log('Last name set in Braze:', userInfo.family_name);
+      }
+      
+      // Track login event
+      braze.logCustomEvent('google_oauth_login', {
+        email: userInfo.email
+      });
+      
+      // Update navigation UI to show signed in state
+      updateNavbarAuth(userInfo);
+    }
+
+    // Update navbar to show authenticated state
+    function updateNavbarAuth(userInfo) {
+      const loginBtn = document.getElementById('loginBtn');
+      const userProfile = document.getElementById('userProfile');
+      const userAvatar = document.getElementById('userAvatar');
+      const userName = document.getElementById('userName');
+      
+      // Hide login button, show user profile
+      loginBtn.style.display = 'none';
+      userProfile.style.display = 'flex';
+      
+      // Set user info
+      userAvatar.src = userInfo.picture || '';
+      userName.textContent = userInfo.given_name || userInfo.email.split('@')[0];
+    }
+
+    // Sign out function
+    function signOut() {
+      google.accounts.id.disableAutoSelect();
+      
+      // Track logout event
+      braze.logCustomEvent('google_oauth_logout');
+      
+      // Reset navbar UI
+      const loginBtn = document.getElementById('loginBtn');
+      const userProfile = document.getElementById('userProfile');
+      
+      loginBtn.style.display = 'block';
+      userProfile.style.display = 'none';
+      
+      console.log('User signed out');
+    }
+
     // Initialize Braze SDK with proper push configuration
     braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
       baseUrl: 'sondheim.braze.com',
@@ -843,6 +1100,121 @@
         trendingEl.appendChild(trendingBook);
       });
     }
+
+    // Google OAuth Functions
+    function handleGoogleSignIn(response) {
+      try {
+        // Decode the JWT token to get user info
+        const payload = JSON.parse(atob(response.credential.split('.')[1]));
+        
+        console.log('Google OAuth Success:', payload);
+        
+        // Set user attributes in Braze (keeping "pjy" as external_id)
+        braze.getUser().setEmail(payload.email);
+        braze.getUser().setFirstName(payload.given_name);
+        braze.getUser().setLastName(payload.family_name);
+        
+        // Track successful login event
+        braze.logCustomEvent('google_oauth_login', {
+          email: payload.email,
+          name: payload.name
+        });
+        
+        // Update UI with user profile
+        showUserProfile({
+          name: payload.name,
+          email: payload.email,
+          picture: payload.picture,
+          given_name: payload.given_name
+        });
+        
+      } catch (error) {
+        console.error('OAuth error:', error);
+        alert('Login failed. Please try again.');
+      }
+    }
+
+    // Show user profile after successful login
+    function showUserProfile(user) {
+      // Hide login button
+      document.getElementById('loginBtn').style.display = 'none';
+      
+      // Show user profile section
+      const userProfile = document.getElementById('userProfile');
+      userProfile.style.display = 'flex';
+      
+      // Set user avatar and name
+      document.getElementById('userAvatar').src = user.picture;
+      document.getElementById('userName').textContent = user.given_name || user.name;
+      
+      // Store user info in localStorage for persistence
+      localStorage.setItem('userProfile', JSON.stringify(user));
+      
+      console.log('User profile updated:', user);
+    }
+
+    // Initiate Google Login
+    function initiateGoogleLogin() {
+      try {
+        google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            console.log('Google Sign-In prompt not displayed');
+            // Fallback: try to trigger sign-in button
+            const signInButton = document.querySelector('.g_id_signin');
+            if (signInButton) {
+              signInButton.click();
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Login initiation error:', error);
+        alert('Unable to start login process. Please refresh the page.');
+      }
+    }
+
+    // Sign out function
+    function signOut() {
+      try {
+        // Sign out from Google
+        google.accounts.id.disableAutoSelect();
+        
+        // Clear stored user data
+        localStorage.removeItem('userProfile');
+        
+        // Reset UI
+        document.getElementById('loginBtn').style.display = 'block';
+        document.getElementById('userProfile').style.display = 'none';
+        
+        // Clear user avatar
+        document.getElementById('userAvatar').src = '';
+        document.getElementById('userName').textContent = '';
+        
+        console.log('User signed out successfully');
+        
+      } catch (error) {
+        console.error('Sign out error:', error);
+      }
+    }
+
+    // Check for existing login on page load
+    function checkExistingLogin() {
+      const savedProfile = localStorage.getItem('userProfile');
+      if (savedProfile) {
+        try {
+          const user = JSON.parse(savedProfile);
+          showUserProfile(user);
+        } catch (error) {
+          console.error('Error loading saved profile:', error);
+          localStorage.removeItem('userProfile');
+        }
+      }
+    }
+
+    // Initialize on page load
+    window.addEventListener('load', function() {
+      // Check for existing login
+      checkExistingLogin();
+    });
   </script>
 </body>
 </html>
