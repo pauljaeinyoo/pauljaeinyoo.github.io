@@ -269,63 +269,7 @@
       margin-bottom: 0.25rem;
     }
     
-    .review-section {
-      border-top: 1px solid #e2e8f0;
-      padding-top: 1.5rem;
-    }
-    
-    .review-label {
-      font-weight: 600;
-      color: #2d3748;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-    
-    textarea { 
-      width: 100%; 
-      min-height: 100px;
-      padding: 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 1rem;
-      line-height: 1.5;
-      resize: vertical;
-      transition: border-color 0.2s ease;
-      background: #f8fafc;
-    }
-    
-    textarea:focus {
-      outline: none;
-      border-color: #4299e1;
-      background: white;
-    }
-    
-    .button-group {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-    
-    .btn-secondary {
-      background: #e2e8f0;
-      color: #4a5568;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.95rem;
-    }
-    
-    .btn-secondary:hover {
-      background: #cbd5e0;
-      transform: none;
-      box-shadow: none;
-    }
-    
-    .save-indicator {
-      font-size: 0.85rem;
-      color: #38a169;
-      margin-top: 0.5rem;
-      font-style: italic;
-    }
+
     
     .loading {
       text-align: center;
@@ -908,8 +852,6 @@
       for (const item of items) {
         const v = item.volumeInfo || {};
         const id = item.id;
-        const reviewKey = `review:${id}`;
-        const saved = JSON.parse(localStorage.getItem(reviewKey) || "{}");
 
         const card = document.createElement("div");
         card.className = "card";
@@ -926,48 +868,7 @@
               ${renderGoogleBooksRating(v)}
             </div>
           </div>
-          <div class="review-section">
-            <label class="review-label">Your Review</label>
-            <textarea placeholder="Share your thoughts about this book...">${saved.text || ""}</textarea>
-            <div class="button-group">
-              <button data-action="save">Save Review</button>
-              <button data-action="clear" class="btn-secondary">Clear</button>
-            </div>
-            <div class="save-indicator" style="opacity: 0;">Saved locally in your browser</div>
-          </div>
         `;
-
-        const textarea = card.querySelector("textarea");
-        const saveBtn = card.querySelector('button[data-action="save"]');
-        const clearBtn = card.querySelector('button[data-action="clear"]');
-
-        saveBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          localStorage.setItem(reviewKey, JSON.stringify({ text: textarea.value.trim() }));
-          
-          // Track review event in Braze
-          braze.logCustomEvent('book_review_saved', {
-            book_title: v.title,
-            book_author: (v.authors || []).join(", "),
-            book_id: id,
-            review_length: textarea.value.trim().length,
-            has_google_rating: !!(v.averageRating && v.ratingsCount)
-          });
-          
-          saveBtn.textContent = "Saved";
-          setTimeout(() => (saveBtn.textContent = "Save"), 800);
-        });
-
-        clearBtn.addEventListener("click", () => {
-          textarea.value = "";
-          localStorage.removeItem(reviewKey);
-          
-          // Track review clear event in Braze
-          braze.logCustomEvent('book_review_cleared', {
-            book_title: v.title,
-            book_id: id
-          });
-        });
 
         grid.appendChild(card);
       }
