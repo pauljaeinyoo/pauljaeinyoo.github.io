@@ -441,17 +441,17 @@
 </head>
 <body>
   <div class="container">
-  <h1>Book Reviews</h1>
+    <h1>Book Reviews</h1>
     <p class="subtitle">Discover, review, and share your thoughts on books</p>
 
     <div class="search-section">
-  <form id="searchForm">
+      <form id="searchForm">
         <input id="q" type="search" placeholder="Search for books..." aria-label="Search books" />
-    <button type="submit">Search</button>
-  </form>
+        <button type="submit">Search</button>
+      </form>
     </div>
 
-  <div id="results"></div>
+    <div id="results"></div>
 
     <!-- Add Trending Section -->
     <div class="trending-section">
@@ -476,42 +476,38 @@
   </div>
 
   <script>
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function(registration) {
-          console.log('Service Worker registered:', registration);
-        })
-        .catch(function(error) {
-          console.log('Service Worker registration failed:', error);
-        });
-    }
-
-    // Initialize Braze SDK
+    // Initialize Braze SDK with proper push configuration
     braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
       baseUrl: 'sondheim.braze.com',
-      enableLogging: true // Optional: for debugging
+      enableLogging: true,
+      serviceWorkerLocation: '/sw.js',
+      manageServiceWorkerExternally: false,
+      enableHtmlInAppMessages: true,
+      allowUserSuppliedJavascript: false
     });
     
     braze.automaticallyShowInAppMessages();
     braze.openSession();
 
-    // Initialize push notifications
+    // Initialize push notifications using Braze methods
     function initializePushNotifications() {
-      // Check if push is supported
-      if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
-        console.log('Push messaging is not supported');
+      // Check if push is supported by Braze
+      if (!braze.isPushSupported()) {
+        console.log('Push messaging is not supported by Braze');
         return;
       }
 
-      // Check current permission status
-      const permission = Notification.permission;
-      
-      if (permission === 'default') {
-        // Show push prompt after user has been on site for 30 seconds
+      console.log('Push permission granted:', braze.isPushPermissionGranted());
+      console.log('Push blocked:', braze.isPushBlocked());
+
+      // Use Braze's permission checking
+      if (!braze.isPushPermissionGranted() && !braze.isPushBlocked()) {
+        // Show push prompt after user engagement
         setTimeout(showPushPrompt, 30000);
-      } else if (permission === 'granted') {
-        console.log('Push notifications already enabled');
+      } else if (braze.isPushPermissionGranted()) {
+        console.log('Push notifications already enabled via Braze');
+      } else if (braze.isPushBlocked()) {
+        console.log('Push notifications blocked by user');
       }
     }
 
@@ -527,6 +523,9 @@
       
       pushPrompt.style.display = 'block';
       
+      // Track prompt shown
+      braze.logCustomEvent('braze_push_prompt_shown');
+      
       enableBtn.addEventListener('click', () => {
         requestPushPermission();
         pushPrompt.style.display = 'none';
@@ -535,17 +534,31 @@
       dismissBtn.addEventListener('click', () => {
         pushPrompt.style.display = 'none';
         localStorage.setItem('pushPromptDismissed', 'true');
+        braze.logCustomEvent('braze_push_prompt_dismissed');
       });
     }
 
     function requestPushPermission() {
+      // Check if already granted
+      if (braze.isPushPermissionGranted()) {
+        console.log('Push permission already granted');
+        showPushSuccessMessage();
+        return;
+      }
+
+      // Use Braze's requestPushPermission method
       braze.requestPushPermission(
         function() {
-          console.log('Push permission granted!');
+          console.log('Push permission granted via Braze!');
+          // Braze automatically handles token registration
           showPushSuccessMessage();
+          
+          // Track successful permission grant
+          braze.logCustomEvent('braze_push_permission_granted');
         },
         function() {
           console.log('Push permission denied');
+          braze.logCustomEvent('braze_push_permission_denied');
         }
       );
     }
@@ -556,7 +569,7 @@
         pushPrompt.innerHTML = `
           <div class="push-content">
             <h3>✅ Notifications Enabled!</h3>
-            <p>You'll now receive updates about great books and personalized recommendations.</p>
+            <p>You'll now receive updates about great books and personalized recommendations via Braze.</p>
           </div>
         `;
         
