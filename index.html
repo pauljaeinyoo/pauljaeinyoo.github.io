@@ -1023,7 +1023,23 @@
     function renderContentCards(cards) {
       const container = document.getElementById('content-cards-container');
       
-      if (!cards || cards.length === 0) {
+      // Handle different data structures from Braze
+      let cardArray = [];
+      if (cards && cards.cards) {
+        // If cards is an object with a 'cards' property
+        cardArray = cards.cards;
+      } else if (Array.isArray(cards)) {
+        // If cards is already an array
+        cardArray = cards;
+      } else {
+        // If cards is not in expected format
+        console.log('Unexpected cards format:', cards);
+        cardArray = [];
+      }
+      
+      console.log('Processing cards:', cardArray); // Debug log
+      
+      if (!cardArray || cardArray.length === 0) {
         container.innerHTML = `
           <div class="no-content-cards">
             <h3>No recommendations yet</h3>
@@ -1036,7 +1052,7 @@
       container.innerHTML = '';
       
       // Filter out control cards and dismissed cards
-      const visibleCards = cards.filter(card => !card.isControl && !card.dismissed);
+      const visibleCards = cardArray.filter(card => !card.isControl && !card.dismissed);
       
       if (visibleCards.length === 0) {
         container.innerHTML = `
