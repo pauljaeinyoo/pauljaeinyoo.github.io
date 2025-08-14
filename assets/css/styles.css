@@ -100,10 +100,10 @@ body {
   background: var(--primary-black);
 }
 
-/* Nike-inspired Hero Section */
+/* Nike-inspired Hero Section - Compact */
 .hero-section {
   background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
-  padding: 4rem 0 6rem;
+  padding: 0.5rem 0 3rem;
   position: relative;
   overflow: hidden;
 }
@@ -114,9 +114,9 @@ body {
   padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
-  min-height: 500px;
+  min-height: 300px;
 }
 
 .hero-content {
@@ -124,18 +124,18 @@ body {
 }
 
 .hero-title {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--primary-black);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
   color: var(--gray-600);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
   max-width: 500px;
 }
@@ -195,13 +195,13 @@ body {
 @media (max-width: 768px) {
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     text-align: center;
-    min-height: 400px;
+    min-height: 250px;
   }
   
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .hero-subtitle {
@@ -254,7 +254,7 @@ h2 {
 
 /* Nike-inspired Sections */
 .section {
-  padding: 4rem 0;
+  padding: 0;
 }
 
 .section-title {
@@ -402,11 +402,23 @@ h1 {
 }
 
 .search-section {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 3rem;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Remove container padding for search section */
+.search-container {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 form { 
@@ -414,6 +426,7 @@ form {
   gap: 1rem; 
   max-width: 600px;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 input[type="search"] {
@@ -526,10 +539,9 @@ button:hover {
 
 .trending-section {
   background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 3rem 0;
   margin-bottom: 3rem;
+  margin-top: 0.5rem;
 }
 
 .trending-section h2 {
@@ -538,6 +550,10 @@ button:hover {
   color: #1a202c;
   margin-bottom: 0.5rem;
   text-align: center;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
 .trending-subtitle {
@@ -545,12 +561,19 @@ button:hover {
   font-size: 1rem;
   color: #718096;
   margin-bottom: 2rem;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
 .trending-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .trending-book {

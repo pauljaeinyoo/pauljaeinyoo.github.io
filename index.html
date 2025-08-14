@@ -57,6 +57,21 @@
   </div>
 
   <!-- Hero Section -->
+  <div class="container search-container">
+    <section class="section">
+
+    <div class="search-section">
+  <form id="searchForm">
+        <input id="q" type="search" placeholder="Search for books..." aria-label="Search books" />
+    <button type="submit">Search</button>
+  </form>
+    </div>
+
+    <div id="results"></div>
+
+    </section>
+  </div>
+
   <section class="hero-section">
     <div class="hero-container">
       <div class="hero-content">
@@ -77,25 +92,12 @@
     </div>
   </section>
 
-  <div class="container">
-    <section class="section">
-
-    <div class="search-section">
-  <form id="searchForm">
-        <input id="q" type="search" placeholder="Search for books..." aria-label="Search books" />
-    <button type="submit">Search</button>
-  </form>
-    </div>
-
-  <div id="results"></div>
-
-    <!-- Trending Section -->
-    <div id="trending-section" class="trending-section">
-      <h2 class="section-title">Trending Now</h2>
-      <p class="trending-subtitle">Most popular books this month</p>
-      <div id="trending-books" class="trending-grid">
-        <div class="loading">Loading trending books...</div>
-      </div>
+  <!-- Trending Section -->
+  <div id="trending-section" class="trending-section">
+    <h2 class="section-title">Trending Now</h2>
+    <p class="trending-subtitle">Most popular books this month</p>
+    <div id="trending-books" class="trending-grid">
+      <div class="loading">Loading trending books...</div>
     </div>
   </div>
 
