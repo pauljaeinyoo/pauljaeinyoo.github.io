@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Reviews - Recommendations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <script src="https://js.appboycdn.com/web-sdk/4.8/braze.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">📚 Book Reviews</a>
+      
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Discover</a>
+        <a href="fantasy.html" class="nav-link">Fantasy</a>
+        <a href="sci-fi.html" class="nav-link">Sci-Fi</a>
+        <a href="recommendations.html" class="nav-link active">Recommendations</a>
+      </div>
+      
+      <div class="nav-auth">
+        <button id="loginBtn" class="login-btn" onclick="initiateGoogleLogin()">Login</button>
+        <div id="userProfile" class="user-profile" style="display: none;">
+          <img id="userAvatar" class="user-avatar" src="" alt="User">
+          <span id="userName" class="user-name"></span>
+          <button class="logout-btn" onclick="signOut()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hidden-google-signin">
+    <div id="g_id_onload" data-client_id="1000882453836-vfvunrrqg3576029frshls83ohf6rb3r.apps.googleusercontent.com" data-callback="handleGoogleSignIn" data-auto_prompt="false"></div>
+    <div class="g_id_signin"></div>
+  </div>
+
+  <div class="container">
+    <div id="recommendations-section" class="recommendations-section">
+      <h2>📚 Personalized Recommendations</h2>
+      <p class="recommendations-subtitle">Curated content just for you</p>
+      <button class="refresh-cards-btn" onclick="refreshContentCards()">Refresh Recommendations</button>
+      <div id="content-cards-container" class="content-cards-container">
+        <div class="loading">Loading your recommendations...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="push-prompt" id="pushPrompt" style="display: none;">
+    <div class="push-content">
+      <h3>📚 Never Miss Great Books!</h3>
+      <p>Get notified about trending books and personalized recommendations</p>
+      <div class="push-buttons">
+        <button id="enablePush" class="push-btn-primary">Enable Notifications</button>
+        <button id="dismissPush" class="push-btn-secondary">Not Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/content-cards.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeContentCards();
+    });
+  </script>
+</body>
+</html>
