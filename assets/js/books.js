@@ -25,6 +25,61 @@ const SCIFI_BOOKS = [
   { query: "The Left Hand of Darkness Ursula K. Le Guin", mockReads: "1.1k" }
 ];
 
+const MYSTERY_BOOKS = [
+  { query: "Gone Girl Gillian Flynn", mockReads: "2.4k" },
+  { query: "The Girl with the Dragon Tattoo Stieg Larsson", mockReads: "2.1k" },
+  { query: "Big Little Lies Liane Moriarty", mockReads: "1.9k" },
+  { query: "The Silent Patient Alex Michaelides", mockReads: "1.7k" },
+  { query: "In the Woods Tana French", mockReads: "1.5k" },
+  { query: "The Thursday Murder Club Richard Osman", mockReads: "1.3k" },
+  { query: "The Seven Deaths of Evelyn Hardcastle Stuart Turton", mockReads: "1.1k" },
+  { query: "Louise Penny Still Life", mockReads: "1.0k" }
+];
+
+const ROMANCE_BOOKS = [
+  { query: "The Seven Husbands of Evelyn Hugo Taylor Jenkins Reid", mockReads: "2.6k" },
+  { query: "Beach Read Emily Henry", mockReads: "2.3k" },
+  { query: "The Hating Game Sally Thorne", mockReads: "2.0k" },
+  { query: "People We Meet on Vacation Emily Henry", mockReads: "1.8k" },
+  { query: "It Ends with Us Colleen Hoover", mockReads: "1.6k" },
+  { query: "The Kiss Quotient Helen Hoang", mockReads: "1.4k" },
+  { query: "Red White and Royal Blue Casey McQuiston", mockReads: "1.2k" },
+  { query: "The Flatshare Beth O'Leary", mockReads: "1.0k" }
+];
+
+const NONFICTION_BOOKS = [
+  { query: "Atomic Habits James Clear", mockReads: "2.8k" },
+  { query: "Educated Tara Westover", mockReads: "2.5k" },
+  { query: "Sapiens Yuval Noah Harari", mockReads: "2.2k" },
+  { query: "Becoming Michelle Obama", mockReads: "2.0k" },
+  { query: "The Body Keeps the Score Bessel van der Kolk", mockReads: "1.8k" },
+  { query: "Untamed Glennon Doyle", mockReads: "1.6k" },
+  { query: "The Midnight Library Matt Haig", mockReads: "1.4k" },
+  { query: "Maybe You Should Talk to Someone Lori Gottlieb", mockReads: "1.2k" }
+];
+
+const THRILLER_BOOKS = [
+  { query: "The Girl on the Train Paula Hawkins", mockReads: "2.3k" },
+  { query: "Gone Girl Gillian Flynn", mockReads: "2.1k" },
+  { query: "The Woman in the Window A.J. Finn", mockReads: "1.9k" },
+  { query: "Behind Closed Doors B.A. Paris", mockReads: "1.7k" },
+  { query: "The Guest List Lucy Foley", mockReads: "1.5k" },
+  { query: "Sharp Objects Gillian Flynn", mockReads: "1.3k" },
+  { query: "The Turn of the Key Ruth Ware", mockReads: "1.1k" },
+  { query: "In a Dark Dark Wood Ruth Ware", mockReads: "1.0k" }
+];
+
+const LITERARY_FICTION_BOOKS = [
+  { query: "Where the Crawdads Sing Delia Owens", mockReads: "2.7k" },
+  { query: "The Seven Husbands of Evelyn Hugo Taylor Jenkins Reid", mockReads: "2.4k" },
+  { query: "Circe Madeline Miller", mockReads: "2.1k" },
+  { query: "The Song of Achilles Madeline Miller", mockReads: "1.9k" },
+  { query: "Normal People Sally Rooney", mockReads: "1.7k" },
+  { query: "The Invisible Bridge Julie Orringer", mockReads: "1.5k" },
+  { query: "A Little Life Hanya Yanagihara", mockReads: "1.3k" },
+  { query: "The Goldfinch Donna Tartt", mockReads: "1.1k" }
+];
+
 const TRENDING_BOOKS = [
   { query: "Project Hail Mary Andy Weir", mockReads: "2.1k" },
   { query: "Dune Frank Herbert", mockReads: "1.8k" },

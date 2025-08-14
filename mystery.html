@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Reviews - Sci-Fi</title>
+  <title>Book Reviews - Mystery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <script src="https://js.appboycdn.com/web-sdk/4.8/braze.min.js"></script>
@@ -18,8 +18,8 @@
       <div class="nav-menu">
         <a href="index.html" class="nav-link">Discover</a>
         <a href="fantasy.html" class="nav-link">Fantasy</a>
-        <a href="sci-fi.html" class="nav-link active">Sci-Fi</a>
-        <a href="mystery.html" class="nav-link">Mystery</a>
+        <a href="sci-fi.html" class="nav-link">Sci-Fi</a>
+        <a href="mystery.html" class="nav-link active">Mystery</a>
         <a href="romance.html" class="nav-link">Romance</a>
         <a href="nonfiction.html" class="nav-link">Non-Fiction</a>
         <a href="thriller.html" class="nav-link">Thriller</a>
@@ -44,20 +44,20 @@
   </div>
 
   <div class="container">
-    <h1>🚀 Science Fiction</h1>
-    <p class="subtitle">Explore the future and beyond</p>
+    <h1>🔍 Mystery Books</h1>
+    <p class="subtitle">Puzzles, secrets, and thrilling investigations</p>
 
     <div class="search-section">
       <form id="searchForm">
-        <input id="q" type="search" placeholder="Search for sci-fi books..." aria-label="Search books" />
+        <input id="q" type="search" placeholder="Search for mystery books..." aria-label="Search books" />
         <button type="submit">Search</button>
       </form>
     </div>
 
     <div id="results"></div>
 
-    <div id="scifi-books" class="genre-grid active">
-      <div class="loading">Loading Sci-Fi books...</div>
+    <div id="mystery-books" class="genre-grid active">
+      <div class="loading">Loading Mystery books...</div>
     </div>
   </div>
 
@@ -77,7 +77,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      loadGenreBooks('scifi', SCIFI_BOOKS);
+      loadGenreBooks('mystery', MYSTERY_BOOKS);
       
       // Handle search form
       const form = document.getElementById("searchForm");

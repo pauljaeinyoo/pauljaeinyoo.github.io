@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Book Reviews - Sci-Fi</title>
+  <title>Book Reviews - Romance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <script src="https://js.appboycdn.com/web-sdk/4.8/braze.min.js"></script>
@@ -18,9 +18,9 @@
       <div class="nav-menu">
         <a href="index.html" class="nav-link">Discover</a>
         <a href="fantasy.html" class="nav-link">Fantasy</a>
-        <a href="sci-fi.html" class="nav-link active">Sci-Fi</a>
+        <a href="sci-fi.html" class="nav-link">Sci-Fi</a>
         <a href="mystery.html" class="nav-link">Mystery</a>
-        <a href="romance.html" class="nav-link">Romance</a>
+        <a href="romance.html" class="nav-link active">Romance</a>
         <a href="nonfiction.html" class="nav-link">Non-Fiction</a>
         <a href="thriller.html" class="nav-link">Thriller</a>
         <a href="literary-fiction.html" class="nav-link">Literary Fiction</a>
@@ -44,20 +44,20 @@
   </div>
 
   <div class="container">
-    <h1>🚀 Science Fiction</h1>
-    <p class="subtitle">Explore the future and beyond</p>
+    <h1>💕 Romance Books</h1>
+    <p class="subtitle">Love stories and heartwarming tales</p>
 
     <div class="search-section">
       <form id="searchForm">
-        <input id="q" type="search" placeholder="Search for sci-fi books..." aria-label="Search books" />
+        <input id="q" type="search" placeholder="Search for romance books..." aria-label="Search books" />
         <button type="submit">Search</button>
       </form>
     </div>
 
     <div id="results"></div>
 
-    <div id="scifi-books" class="genre-grid active">
-      <div class="loading">Loading Sci-Fi books...</div>
+    <div id="romance-books" class="genre-grid active">
+      <div class="loading">Loading Romance books...</div>
     </div>
   </div>
 
@@ -77,7 +77,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      loadGenreBooks('scifi', SCIFI_BOOKS);
+      loadGenreBooks('romance', ROMANCE_BOOKS);
       
       // Handle search form
       const form = document.getElementById("searchForm");
