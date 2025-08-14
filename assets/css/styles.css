@@ -697,3 +697,238 @@ button:hover {
   color: #2d3748;
   margin-bottom: 0.5rem;
 }
+
+/* Book Card Click Styling */
+.book-card-clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-card-clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.click-hint {
+  font-size: 0.75rem;
+  color: #667eea;
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Enhanced Rating Types */
+.book-rating[data-rating-type="actual"] {
+  border-left-color: #48bb78; /* Green for actual ratings */
+}
+
+.book-rating[data-rating-type="popularity"] {
+  border-left-color: #4299e1; /* Blue for popularity scores */
+}
+
+.book-rating[data-rating-type="subjects"] {
+  border-left-color: #718096; /* Gray for subjects */
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  max-height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #1a202c;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #718096;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 100px);
+}
+
+.book-detail-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+}
+
+.modal-book-cover {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.no-cover {
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(135deg, #f0f4f7 0%, #e2e8f0 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #718096;
+  font-style: italic;
+  text-align: center;
+}
+
+.book-detail-section {
+  margin-bottom: 2rem;
+}
+
+.book-detail-section h3 {
+  color: #1a202c;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.25rem;
+  display: inline-block;
+}
+
+.book-description {
+  line-height: 1.7;
+  color: #4a5568;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.book-meta-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.meta-item {
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.meta-item strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.modal-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.modal-rating .stars {
+  color: #f6ad55;
+  font-size: 1.25rem;
+}
+
+.modal-rating .rating-text {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.modal-rating .rating-count {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.book-actions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.open-library-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.open-library-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+  
+  .book-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .book-detail-cover {
+    text-align: center;
+  }
+  
+  .modal-book-cover {
+    max-width: 150px;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .modal-header {
+    padding: 1rem 1.5rem;
+  }
+}
