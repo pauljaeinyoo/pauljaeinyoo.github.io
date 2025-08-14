@@ -190,6 +190,28 @@ function generateStars(rating, maxRating = 5) {
          '☆'.repeat(emptyStars);
 }
 
+// Generate compact rating display for book previews
+function generatePreviewRating(book) {
+  // Check if we have actual ratings data
+  if (book.ratings_average && book.ratings_count) {
+    return `★ ${book.ratings_average.toFixed(1)} (${book.ratings_count.toLocaleString()})`;
+  }
+  
+  // Calculate popularity score from reading statistics
+  const popularityScore = calculatePopularityScore(book);
+  
+  if (popularityScore.score > 0) {
+    return `★ ${popularityScore.score.toFixed(1)} popularity`;
+  }
+  
+  // Fallback to subject or no rating
+  if (book.subject && book.subject.length > 0) {
+    return book.subject[0]; // Show first subject
+  }
+  
+  return "No rating";
+}
+
 // Fetch detailed book information including description
 async function fetchBookDetails(workKey) {
   try {
@@ -445,7 +467,7 @@ function renderGenreBooks(books, genre) {
       <img class="trending-cover" src="${coverUrl}" alt="" />
       <div class="trending-title">${book.title || "Untitled"}</div>
       <div class="trending-author">${(book.author_name || []).join(", ") || "Unknown author"}</div>
-      <div class="trending-stats">${book.mockReads} reads</div>
+      <div class="trending-stats">${generatePreviewRating(book)}</div>
     `;
     
     genreBook.addEventListener('click', () => {
@@ -508,7 +530,7 @@ function renderTrendingBooks(books) {
       <img class="trending-cover" src="${coverUrl}" alt="" />
       <div class="trending-title">${book.title || "Untitled"}</div>
       <div class="trending-author">${(book.author_name || []).join(", ") || "Unknown author"}</div>
-      <div class="trending-stats">${book.mockReads} reads</div>
+      <div class="trending-stats">${generatePreviewRating(book)}</div>
     `;
     
     trendingBook.addEventListener('click', () => {
