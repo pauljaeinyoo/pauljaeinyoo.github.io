@@ -512,15 +512,8 @@ function renderTrendingBooks(books) {
     `;
     
     trendingBook.addEventListener('click', () => {
-      const searchInput = document.getElementById('q');
-      if (searchInput) {
-        searchInput.value = book.title || '';
-        searchBooks(book.title || '');
-        const resultsEl = document.getElementById('results');
-        if (resultsEl) {
-          resultsEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+      // Show book details modal directly for trending books
+      showBookDetails(book);
     });
     
     trendingEl.appendChild(trendingBook);
