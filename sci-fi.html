@@ -42,6 +42,15 @@
     <h1>🚀 Science Fiction</h1>
     <p class="subtitle">Explore the future and beyond</p>
 
+    <div class="search-section">
+      <form id="searchForm">
+        <input id="q" type="search" placeholder="Search for sci-fi books..." aria-label="Search books" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <div id="results"></div>
+
     <div id="scifi-books" class="genre-grid active">
       <div class="loading">Loading Sci-Fi books...</div>
     </div>
@@ -64,6 +73,41 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       loadGenreBooks('scifi', SCIFI_BOOKS);
+      
+      // Handle search form
+      const form = document.getElementById("searchForm");
+      const qInput = document.getElementById("q");
+      const resultsEl = document.getElementById("results");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const q = qInput.value.trim();
+        if (!q) return;
+        searchBooks(q);
+      });
+
+      // Clear results when search input is cleared
+      qInput.addEventListener("input", (e) => {
+        const q = e.target.value.trim();
+        if (!q) {
+          resultsEl.innerHTML = "";
+        }
+      });
+
+      qInput.addEventListener("search", (e) => {
+        const q = e.target.value.trim();
+        if (!q) {
+          resultsEl.innerHTML = "";
+        }
+      });
+      
+      // Handle URL search parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQuery = urlParams.get('search');
+      if (searchQuery) {
+        qInput.value = searchQuery;
+        searchBooks(searchQuery);
+      }
     });
   </script>
 </body>
