@@ -449,8 +449,8 @@ function renderGenreBooks(books, genre) {
     `;
     
     genreBook.addEventListener('click', () => {
-      // For genre pages, redirect to search on discover page
-      window.location.href = `/?search=${encodeURIComponent(book.title || '')}`;
+      // Show book details modal directly on genre pages
+      showBookDetails(book);
     });
     
     genreEl.appendChild(genreBook);
