@@ -1,3 +1,24 @@
+/* Nike-inspired Design System */
+:root {
+  --primary-black: #111111;
+  --primary-white: #ffffff;
+  --accent-orange: #ff6b35;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,59 +26,244 @@
 }
 
 body { 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-  color: #2d3748;
-  background: #f7fafc;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--primary-black);
+  background: var(--primary-white);
   min-height: 100vh;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Top Navigation Bar - Braze Style */
+/* Nike-inspired Navigation */
 .top-nav {
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--primary-white);
+  border-bottom: 1px solid var(--gray-200);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
+  padding: 0;
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
+  height: 60px;
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a202c;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary-black);
   text-decoration: none;
+  letter-spacing: -0.02em;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
-  color: #4a5568;
+  color: var(--gray-700);
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.95rem;
+  padding: 1rem 0;
   transition: color 0.2s ease;
+  position: relative;
 }
 
 .nav-link:hover {
-  color: #2d3748;
+  color: var(--primary-black);
 }
 
 .nav-link.active {
-  color: #667eea;
+  color: var(--primary-black);
   font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-black);
+}
+
+/* Nike-inspired Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  padding: 4rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 500px;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--primary-black);
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--gray-600);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.hero-cta {
+  background: var(--primary-black);
+  color: var(--primary-white);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-cta:hover {
+  background: var(--gray-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-books-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  transform: rotate(5deg);
+}
+
+.hero-book {
+  width: 120px;
+  height: 180px;
+  background: var(--gray-300);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease;
+}
+
+.hero-book:nth-child(even) {
+  transform: translateY(-20px);
+}
+
+.hero-book:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* Mobile Responsiveness for Hero */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    min-height: 400px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    transform: rotate(0deg);
+  }
+  
+  .hero-book {
+    width: 80px;
+    height: 120px;
+  }
+}
+
+/* Nike-inspired Container */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Nike-inspired Typography */
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--primary-black);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--primary-black);
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+/* Nike-inspired Sections */
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--primary-black);
+}
   position: relative;
 }
 
@@ -79,21 +285,44 @@ body {
 }
 
 .login-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--primary-black);
+  color: var(--primary-white);
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
 }
 
 .login-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  background: var(--gray-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.logout-btn {
+  background: var(--gray-200);
+  color: var(--gray-700);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.logout-btn:hover {
+  background: var(--gray-300);
+  color: var(--primary-black);
 }
 
 .user-profile {
@@ -101,9 +330,9 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--gray-50);
+  border-radius: 25px;
+  border: 1px solid var(--gray-200);
 }
 
 .user-avatar {
@@ -206,70 +435,86 @@ input[type="search"]:focus {
 
 button {
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--primary-black);
+  color: var(--primary-white);
   border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  border-radius: 50px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   min-width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+  background: var(--gray-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
+/* Nike-inspired Grid Layout */
 .results-grid {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  margin-top: 3rem;
 }
 
+/* Nike-inspired Book Cards */
 .card { 
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: var(--primary-white);
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--gray-300);
 }
 
 .book-info {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .book-cover {
-  width: 120px;
-  height: 180px;
+  width: 100%;
+  height: 280px;
   object-fit: cover;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f0f4f7 0%, #e2e8f0 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.book-details {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-details h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 0.5rem;
+  color: var(--primary-black);
+  margin-bottom: 0.75rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .meta { 
-  font-size: 0.95rem; 
-  color: #718096;
-  margin-bottom: 0.25rem;
+  font-size: 0.9rem; 
+  color: var(--gray-500);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
 }
 
 .loading {

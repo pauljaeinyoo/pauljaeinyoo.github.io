@@ -18,7 +18,7 @@
   <!-- Top Navigation Bar -->
   <nav class="top-nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo"></a>
+      <a href="index.html" class="nav-logo">BookHub</a>
       
       <div class="nav-menu">
         <a href="index.html" class="nav-link active">Discover</a>
@@ -56,9 +56,29 @@
     <div class="g_id_signin"></div>
   </div>
 
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">Discover Your Next Great Read</h1>
+        <p class="hero-subtitle">Explore thousands of books with real ratings, detailed reviews, and personalized recommendations from our curated collection.</p>
+        <button class="hero-cta" onclick="document.getElementById('q').focus()">Start Exploring</button>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-books-grid">
+          <div class="hero-book"></div>
+          <div class="hero-book"></div>
+          <div class="hero-book"></div>
+          <div class="hero-book"></div>
+          <div class="hero-book"></div>
+          <div class="hero-book"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="container">
-    <h1>Discover Great Books</h1>
-    <p class="subtitle">Search and explore trending books</p>
+    <section class="section">
 
     <div class="search-section">
   <form id="searchForm">
@@ -71,7 +91,7 @@
 
     <!-- Trending Section -->
     <div id="trending-section" class="trending-section">
-      <h2>Trending on Book Reviews</h2>
+      <h2 class="section-title">Trending Now</h2>
       <p class="trending-subtitle">Most popular books this month</p>
       <div id="trending-books" class="trending-grid">
         <div class="loading">Loading trending books...</div>
