@@ -9,8 +9,8 @@ braze.initialize('7ad461d4-5c54-45a1-a0f2-c018596c87ca', {
 });
 
 braze.automaticallyShowInAppMessages();
-braze.openSession();
 braze.changeUser("pjy");
+braze.openSession();
 
 // Google OAuth Integration
 function initiateGoogleLogin() {
